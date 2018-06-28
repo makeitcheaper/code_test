@@ -1,0 +1,50 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://test_lead_api/api/v1/create
+    body:
+      encoding: UTF-8
+      string: access_token=584a19751bac24aa3cc64fab3bd9ca5b&pGUID=CFFBF53F-6D89-4B5B-8B36-67A97F18EDEB&pAccName=MicDevtest&pPartner=MicDevtest&name=Space%20Between&business_name=Borer%2C%20Halvorson%20and%20Padberg&telephone_number=La%20La%20Land&email=clare%40koch.net&validation_context=
+    headers:
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=utf-8
+  response:
+    status:
+      code: 400
+      message: Bad Request
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Status:
+      - 400 Bad Request
+      Cache-Control:
+      - no-cache
+      X-Runtime:
+      - '0.004731'
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      X-Request-Id:
+      - b4c79cee-4835-4bfe-8847-db4e546d16dd
+      Date:
+      - Wed, 27 Jun 2018 15:22:56 GMT
+      X-Powered-By:
+      - Phusion Passenger 5.1.12
+      Server:
+      - nginx + Phusion Passenger 5.1.12
+    body:
+      encoding: UTF-8
+      string: '{"message":"Format errors on validation","errors":["Field ''telephone_number''
+        wrong format (must contain have valid phone number with 11 numbers. string
+        max 13 chars)"]}'
+    http_version: 
+  recorded_at: Wed, 27 Jun 2018 15:22:56 GMT
+recorded_with: VCR 4.0.0

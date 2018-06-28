@@ -1,0 +1,95 @@
+html {
+  background: url(https://res.cloudinary.com/dul8pgi8k/image/upload/q_auto/v1/images/v3/Homepage_April_2017.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+body {
+  background: transparent;
+  color: white;
+}
+
+body a {
+  text-decoration: underline;
+  color: black;
+}
+
+section.contact-form .container {
+  padding-top: 2em;
+  padding-bottom: 2em;
+}
+section.contact-form .form {
+  background: rgba(170,213,216, 0.7);
+  padding: 20px 10px 20px 10px;
+  margin-top: 15px;
+  text-align: center;
+  color: black;
+}
+
+section.contact-form h1 {
+  text-align: center;
+  display: block;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+section.contact-form h3 {
+  font-size: 18px;
+}
+
+section.contact-form h3 span {
+  display: block;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+section.contact-form h1 span {
+  display: block;
+  text-align: center;
+  line-height: 1.5em;
+}
+
+section.contact-form h1 span.first {
+
+}
+
+section.contact-form h1 span.second {
+  color: #aad5d8;
+}
+
+section.contact-form h1 span.third {
+  font-size: 2em;
+  line-height: 90px;
+}
+
+section.contact-form ul.list {
+  margin-bottom: 2em;
+  padding: 0;
+}
+
+section.contact-form ul.list li {
+  margin-left: 0;
+  list-style: none;
+  font-weight: 400;
+  padding-bottom: 10px;
+}
+
+section.contact-form .btn.btn.btn-red-new {
+  background: #f0473a;
+  border-color: #f0473a;
+  color: #fff;
+}
+
+section.contact-form span.help-block {
+  text-align: left;
+}
+
+section.contact-form p.smaller {
+  color: #000;
+  font-size: 12px;
+  font-style: italic;
+  line-height: normal;
+  margin: 1em;
+}

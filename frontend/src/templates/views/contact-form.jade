@@ -1,0 +1,110 @@
+section.contact-form
+  .container
+    .row
+      .col-md-6
+        h1
+          span.first WE ARE ON A MISSION
+          span.second TO MAKE YOU SMILE
+          span.third FOR GOOD
+        ul.list
+          li Save money on your business utilities year after year
+          li Stay in control by letting us know what prices - or suppliers - you prefer
+          li Get great deals from providers we know and trust.
+      .col-md-5.col-md-offset-1
+        .form
+          h3
+            strong Fill in the form for a quick call
+            span We call. We search. You save.
+
+          form(name="contactForm",
+               ng-submit="submit(contactForm.$valid)",
+               role="form",
+               novalidate="true")
+
+            .alert.alert-warning(ng-show="message", role="alert")
+              | {{ message }}
+
+            ul.list-unstyled.error-messages(ng-show="errors.length>0")
+              li(ng-repeat="message in errors")
+                .alert.alert-danger(ng-show="message", role="alert")
+                  | {{ message }}
+
+
+            fieldset
+              .col-md-12
+                .form-group(ng-class="{ 'has-error' : contactForm.name.$invalid && (contactForm.name.$dirty || contactForm.$submitted) }")
+                  input#name.form-control(name="name",
+                                                type="text",
+                                                placeholder="Name",
+                                                ng-model="newContact.name",
+                                                required="true", autofocus)
+                  div(ng-messages="contactForm.name.$error", ng-if="contactForm.name.$invalid && (contactForm.name.$dirty || contactForm.$submitted)", role="alert")
+                    span.help-block.has-error(ng-message="required")
+                      | Name cannot be blank
+
+              .col-md-12
+                .form-group(ng-class="{ 'has-error' : contactForm.business_name.$invalid && (contactForm.business_name.$dirty || contactForm.$submitted) }")
+                  input#name.form-control(name="business_name",
+                                                type="text",
+                                                placeholder="Business Name",
+                                                ng-model="newContact.business_name",
+                                                required="true")
+                  div(ng-messages="(contactForm.business_name.$error", ng-if="contactForm.business_name.$invalid && (contactForm.business_name.$dirty || contactForm.$submitted)", role="alert")
+                    span.help-block.has-error(ng-message="required")
+                      | Business name cannot be blank
+
+
+
+              .col-md-12
+                .form-group(ng-class="{ 'has-error' : contactForm.telephone_number.$invalid && (contactForm.telephone_number.$dirty || contactForm.$submitted) }")
+                  input#telephone_number.form-control(name="telephone_number",
+                                                type="text",
+                                                placeholder="Telephone number",
+                                                ng-model="newContact.telephone_number",
+                                                required="true"
+                                                )
+                  div(ng-messages="contactForm.telephone_number.$error", ng-if="contactForm.telephone_number.$invalid && (contactForm.telephone_number.$dirty || contactForm.$submitted)", role="alert")
+                    span.help-block.has-error(ng-message="required")
+                      | Telephone number cannot be blank
+
+
+              .col-md-12
+                .form-group(ng-class="{ 'has-error' : contactForm.email.$invalid && (contactForm.email.$dirty || contactForm.$submitted) }")
+                  input#email.form-control(name="email",
+                                                type="email",
+                                                placeholder="e-mail",
+                                                ng-model="newContact.email",
+                                                required="true"
+                                                )
+                  div(ng-messages="contactForm.email.$error", ng-if="contactForm.email.$invalid && (contactForm.email.$dirty || contactForm.$submitted)", role="alert")
+                    span.help-block.has-error(ng-message="required")
+                      | invalid e-mail
+
+              .col-md-12
+                .form-group
+                  input#name.form-control(name="contact_time",
+                                                type="text",
+                                                placeholder="Contact Time",
+                                                ng-model="newContact.contact_time")
+
+              .col-md-12
+                .form-group
+                  textarea#name.form-control(name="notes",
+                                                placeholder="Notes",
+                                                ng-model="newContact.notes")
+
+              .col-md-12
+                .form-group
+                  input#name.form-control(name="reference",
+                                                type="text",
+                                                placeholder="Business Name",
+                                                ng-model="newContact.reference")
+
+              p.smaller.font-italic
+                | By submitting your details you agree to our 
+                a(href='https://dp4stuyxsqom4.cloudfront.net/micro_global/terms-and-conditions.pdf', target='_blank') terms and conditions
+                |  and 
+                a(href='https://dp4stuyxsqom4.cloudfront.net/micro_global/privacy-policy.pdf', target='_blank') privacy policy
+                | . We promise we won't share your data with others for marketing purposes.
+              .justify-content-md-center.text-center
+                button.btn.btn-primary.expand.btn-red-new(type='submit') REQUEST A CALLBACK

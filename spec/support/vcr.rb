@@ -1,6 +1,8 @@
-# frozen_string_literal: true
+require 'vcr'
 
-VCR.configure do |config|
-  config.cassette_library_dir = 'spec/fixtures/cassettes'
-  config.hook_into :webmock
+VCR.configure do |c|
+  c.hook_into :webmock
+  c.configure_rspec_metadata!
+  c.ignore_localhost     = true
+  c.cassette_library_dir = 'spec/fixtures/cassettes'
 end
