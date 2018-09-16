@@ -1,0 +1,7 @@
+- if @api_result
+  div class="api_result"
+    = @api_result.message
+    ul
+      - @api_result.errors.each do |error|
+        li
+          = error
