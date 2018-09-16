@@ -13,13 +13,11 @@ require "sprockets/railtie"
 Bundler.require(*Rails.groups)
 
 
-module MoneySuperMarket
-  class Application < Rails::Application
-    config.load_defaults 5.1
+class Application < Rails::Application
+  config.load_defaults 5.1
 
-    # Don't generate system test files.
-    config.generators.system_tests = nil
+  # Don't generate system test files.
+  config.generators.system_tests = nil
 
-    config.autoload_paths += %W[#{config.root}/app/services]
-  end
+  config.autoload_paths += %W[#{config.root}/app/services]
 end
