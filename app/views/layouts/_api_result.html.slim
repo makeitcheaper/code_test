@@ -1,5 +1,5 @@
 - if @api_result
-  div class="api_result"
+  div.alert.alert-secondary
     = @api_result.message
     ul
       - @api_result.errors.each do |error|

@@ -17,8 +17,10 @@
 
   </head>
 
-  <body>
-    <h1>Send a callback request</h1>
+  <body class="container">
+    <header>
+      <%= yield :header %>
+    </header>
 
     <%= render 'layouts/flash' %>
     <%= render 'layouts/api_result' %>

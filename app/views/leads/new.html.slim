@@ -1,7 +1,15 @@
+= render 'header'
 
 = simple_form_for @lead do |f|
-  = f.input :customer_full_name
-  = f.input :business_name
-  = f.input :email
-  = f.input :telephone_number
-  = f.button :submit
+  .form-group
+    = f.input :customer_full_name, input_html: {class: 'form-control'}
+  .form-group
+    = f.input :business_name, input_html: {class: 'form-control'}
+
+  .form-group
+    = f.input :email, input_html: {class: 'form-control'}
+
+  .form-group
+    = f.input :telephone_number, input_html: {class: 'form-control'}
+
+  = f.button :submit, 'Request callback', class: 'btn btn-primary'

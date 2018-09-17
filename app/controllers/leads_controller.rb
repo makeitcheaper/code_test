@@ -10,14 +10,14 @@ class LeadsController < ApplicationController
       @api_result = post_to_api
 
       if @api_result.status == 201
-        flash[:message] = 'Successfully sent to the API'
+        flash[:success] = 'Thankyou! Your callback request has been successfully sent'
         redirect_to :thankyou_leads
       else
-        flash.now[:alert] = 'The API returned an error'
+        flash.now[:danger] = 'There was a problem sending your callback request'
         render :new
       end
     else
-      flash.now[:alert] = 'Some of the values you supplied are invalid'
+      flash.now[:danger] = 'Some of the values you supplied are invalid'
       render :new
     end
   end
