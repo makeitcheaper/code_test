@@ -1,9 +1,14 @@
 en:
   simple_form:
-    yes: 'Yes'
-    no: 'No'
-    required:
-      text: 'required'
-      mark: '*'
-    error_notification:
-      default_message: "Please review the problems below:"
+    labels:
+      lead:
+        customer_full_name: 'Customer name'
+        business_name: 'Business name'
+        email: 'Email'
+        telephone_number: 'Tel. number'
+    placeholders:
+      lead:
+        customer_full_name: 'e.g. Fred Blogs'
+        business_name: 'e.g. Widgets & Co'
+        email: 'e.g. fred@widgets.co.uk'
+        telephone_number: 'e.g. 01234 567890'
