@@ -10,7 +10,8 @@ class LeadsController < ApplicationController
       @api_result = post_to_api
 
       if @api_result.status == 201
-        flash[:success] = 'Thankyou! Your callback request has been successfully sent'
+        flash[:success] = 'Thankyou! Your callback request has been successfully sent. MakeItCheaper will contact you shortly'
+
         redirect_to :thankyou_leads
       else
         flash.now[:danger] = 'There was a problem sending your callback request'

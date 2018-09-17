@@ -1,0 +1,54 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://mic-leads.dev-test.makeiteasy.com/api/v1/create
+    body:
+      encoding: US-ASCII
+      string: access_token=d5cb1e56463cb0fe18b1a8cf6283d17e&pGUID=CFFBF53F-6D89-4B5B-8B36-67A97F18EDEB&pAccName=MicDevtest&pPartner=MicDevtest&name=Bob+Billiards&business_name=Billiards+Chocolate+Biscuit+Co&telephone_number=01273-677677&email=bob%40billiards.com&contact_time=2018-09-17+17%3A22%3A02&notes=&reference=
+    headers:
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 400
+      message: Bad Request
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Status:
+      - 400 Bad Request
+      Cache-Control:
+      - no-cache
+      X-Runtime:
+      - '0.004691'
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      X-Request-Id:
+      - a7abcff5-3406-40d5-864d-df0d8fc2fc40
+      Date:
+      - Mon, 17 Sep 2018 17:22:05 GMT
+      X-Powered-By:
+      - Phusion Passenger 5.1.12
+      Server:
+      - nginx + Phusion Passenger 5.1.12
+      X-Cache:
+      - MISS from IMP-cache
+      X-Cache-Lookup:
+      - MISS from IMP-cache:3128
+      Via:
+      - 1.0 IMP-cache (squid/3.1.20)
+      Connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: '{"message":"Format errors on validation","errors":["Field ''telephone_number''
+        wrong format (must contain have valid phone number with 11 numbers. string
+        max 13 chars)"]}'
+    http_version: 
+  recorded_at: Mon, 17 Sep 2018 17:22:02 GMT
+recorded_with: VCR 4.0.0
