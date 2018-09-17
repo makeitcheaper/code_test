@@ -1,4 +1,6 @@
 class LeadsController < ApplicationController
+  before_action :set_title
+
   def new
     @lead = Lead.new
   end
@@ -24,6 +26,10 @@ class LeadsController < ApplicationController
   end
 
   private
+
+  def set_title
+    @title = 'Request callback'
+  end
 
   def post_to_api
     Api.enqueue(
