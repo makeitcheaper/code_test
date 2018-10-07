@@ -21,5 +21,7 @@ module MoneySuperMarket
     config.generators.system_tests = nil
 
     config.autoload_paths += %W[#{config.root}/app/services]
+
+    config.mic_api_base_uri = 'http://mic-leads.dev-test.makeiteasy.com/api/v1'
   end
 end

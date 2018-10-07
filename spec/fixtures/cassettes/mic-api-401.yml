@@ -1,0 +1,52 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://mic-leads.dev-test.makeiteasy.com/api/v1/create
+    body:
+      encoding: UTF-8
+      string: name=Ethelyn%20Fritsch&business_name=Homenick%2C%20Lemke%20and%20Lindgren&email=laury_price%40cartwright.io&telephone_number=07123456789&pGUID=CFFBF53F-6D89-4B5B-8B36-67A97F18EDEB&pAccName=MicDevtest&pPartner=MicDevtest&access_token=
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 401
+      message: Unauthorized
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Status:
+      - 401 Unauthorized
+      Cache-Control:
+      - no-cache
+      X-Runtime:
+      - '0.004365'
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      X-Request-Id:
+      - dec43b4c-1158-49d8-88d8-1b18c417313a
+      Date:
+      - Sun, 07 Oct 2018 17:49:19 GMT
+      X-Powered-By:
+      - Phusion Passenger 5.1.12
+      Server:
+      - nginx + Phusion Passenger 5.1.12
+    body:
+      encoding: UTF-8
+      string: '{"message":"Unauthorised access_token"}'
+    http_version: 
+  recorded_at: Sun, 07 Oct 2018 17:49:19 GMT
+recorded_with: VCR 4.0.0

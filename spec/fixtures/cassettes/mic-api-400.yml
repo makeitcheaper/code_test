@@ -1,0 +1,53 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://mic-leads.dev-test.makeiteasy.com/api/v1/create
+    body:
+      encoding: UTF-8
+      string: name=Bob&business_name=Strosin%20Group&email=jett%40champlin.io&telephone_number=07123456789&pGUID=CFFBF53F-6D89-4B5B-8B36-67A97F18EDEB&pAccName=MicDevtest&pPartner=MicDevtest&access_token=ddd8d3c35aabedf3ffe76f2ea4fa143f
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 400
+      message: Bad Request
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Status:
+      - 400 Bad Request
+      Cache-Control:
+      - no-cache
+      X-Runtime:
+      - '0.004661'
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      X-Request-Id:
+      - 45ea0724-ab43-4a04-829d-0fda170d9eab
+      Date:
+      - Sun, 07 Oct 2018 18:14:50 GMT
+      X-Powered-By:
+      - Phusion Passenger 5.1.12
+      Server:
+      - nginx + Phusion Passenger 5.1.12
+    body:
+      encoding: UTF-8
+      string: '{"message":"Format errors on validation","errors":["Field ''name''
+        wrong format, ''name'' must be composed with 2 separated words (space between)"]}'
+    http_version: 
+  recorded_at: Sun, 07 Oct 2018 18:14:50 GMT
+recorded_with: VCR 4.0.0
