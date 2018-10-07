@@ -33,6 +33,7 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails', '~> 0.3'
   gem 'rubocop'
+  gem 'rubocop-rspec'
   gem 'sshkit-sudo'
   gem 'sqlite3', '~> 1.3'
 end

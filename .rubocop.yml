@@ -1,3 +1,5 @@
+require: rubocop-rspec
+
 Style/BlockLength:
   Exclude:
     - 'spec/**/*.rb'
@@ -23,3 +25,6 @@ AllCops:
     - 'db/**/*'
     - 'bin/**/*'
     - 'lib/**/*'
+
+Bundler/OrderedGems:
+  Enabled: false
