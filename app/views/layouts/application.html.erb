@@ -2,6 +2,8 @@
 <html>
   <head>
     <%= csrf_meta_tags %>
+    
+    <title>Make it Cheaper | <%= yield(:title) %></title>
 
     <link rel="stylesheet" media="all" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
     <link rel="stylesheet" media="all" href="<%= asset_path "application", type: :stylesheet %>" />
