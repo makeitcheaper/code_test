@@ -1,3 +1,11 @@
 <% provide(:title, 'Request a callback') %>
 <h1>About Us</h1>
-<p>Find me in app/views/pages/index.html.erb</p>
+
+<%= simple_form_for(@lead) do |f| %>
+  <%= f.input :name %>
+  <%= f.input :business_name %>
+  <%= f.input :telephone_number %>
+  <%= f.input :email %>
+
+  <%= f.button :submit, class: 'btn btn-primary btn-lg btn-block' %>
+<% end %>
