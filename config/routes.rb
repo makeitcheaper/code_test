@@ -1,4 +1,4 @@
 Rails.application.routes.draw do
-  root 'pages#index'
+  root 'leads#index'
   resources 'leads'
 end
