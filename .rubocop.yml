@@ -1,8 +1,8 @@
-Style/BlockLength:
+Metrics/BlockLength:
   Exclude:
     - 'spec/**/*.rb'
 
-Style/LineLength:
+Metrics/LineLength:
   Max: 130
   Exclude:
     - 'spec/**/*.rb'
