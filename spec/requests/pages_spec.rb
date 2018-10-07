@@ -12,11 +12,11 @@ describe 'Request callback page' do
     context 'when successful' do
       before do
         fill_in "name",              with: "Example User"
-        fill_in "business_name",     with: "Ecample ltd"
-        fill_in "email",             with: "example@example.com"
-        fill_in "telephone_number",  with: "0122332323"
+        fill_in "Business name",     with: "Ecample ltd"
+        fill_in "Email",             with: "example@example.com"
+        fill_in "Telephone number",  with: "0122332323"
 
-        click_button 'Submit'
+        click_button 'Create Lead'
       end
 
       it { should have_selector('.message', text: 'Thanks') }
