@@ -12,9 +12,9 @@ describe 'Request callback page' do
     context 'when successful' do
       before do
         fill_in "name",              with: "Example User"
-        fill_in "Business name",     with: "Ecample ltd"
         fill_in "Email",             with: "example@example.com"
-        fill_in "Telephone number",  with: "0122332323"
+        fill_in "Business name",     with: "Ecample ltd"
+        fill_in "Telephone number",  with: "01212332323"
 
         click_button 'Create Lead'
       end
