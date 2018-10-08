@@ -22,6 +22,7 @@ describe "Lead pages" do
 
     describe "with valid information" do
       let(:lead) { FactoryBot.build(:lead) }
+
       before do
         fill_in "Name",    with: lead.name
         fill_in "Email",   with: lead.email

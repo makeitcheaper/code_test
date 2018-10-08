@@ -16,3 +16,4 @@
 //= require turbolinks
 //= require jquery_ujs
 //= require site
+//= require bootstrap_static_form_validation

@@ -1,18 +1,25 @@
 <% provide(:title, 'Request a callback') %>
 <h1>About Us</h1>
 
-<%= simple_form_for @lead do |f| %>
-  <%= f.input :access_token, input_html: { value: ENV['LEAD_API_ACCESS_TOKEN'] }, as: :hidden %>
-  <%= f.input :pGUID, input_html: { value: ENV['LEAD_API_PGUID'] }, as: :hidden %>
-  <%= f.input :pAccName, input_html: { value: ENV['LEAD_API_PACCNAME'] }, as: :hidden %>
-  <%= f.input :pPartner, input_html: { value: ENV['LEAD_API_PPARTNER'] }, as: :hidden %>
-  <%= f.input :name %>
-  <%= f.input :business_name %>
-  <%= f.input :telephone_number %>
-  <%= f.input :email %>
-  <%= f.input :contact_time, as: :datetime, html5: true, input_html: { min: "#{ DateTime.now.to_s}" } %>
-  <%= f.input :notes, as: :text, input_html: { maxlength: 255 } %>
-  <%= f.input :reference, as: :text, input_html: { maxlength: 50 } %>
+<div class="row">
+  <div class="col-sm-8">
+    <%= simple_form_for @lead do |f| %>
+      <%= f.input :access_token, input_html: { value: ENV['LEAD_API_ACCESS_TOKEN'] }, as: :hidden %>
+      <%= f.input :pGUID, input_html: { value: ENV['LEAD_API_PGUID'] }, as: :hidden %>
+      <%= f.input :pAccName, input_html: { value: ENV['LEAD_API_PACCNAME'] }, as: :hidden %>
+      <%= f.input :pPartner, input_html: { value: ENV['LEAD_API_PPARTNER'] }, as: :hidden %>
+      <%= f.input :name %>
+      <%= f.input :business_name %>
+      <%= f.input :telephone_number %>
+      <%= f.input :email %>
+      <%= f.input :contact_time, as: :datetime, html5: true, input_html: { min: "#{ DateTime.now.to_s}" } %>
+      <%= f.input :notes, as: :text, input_html: { maxlength: 255 } %>
+      <%= f.input :reference, as: :text, input_html: { maxlength: 50 } %>
 
-  <%= f.submit :create %>
-<% end %>
+      <%= f.submit :create, class: 'btn btn-primary btn-lg btn-block' %>
+    <% end %>
+  </div>
+  <div class="col-sm-4">
+
+  </div>
+</div>
