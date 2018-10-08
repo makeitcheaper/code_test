@@ -2,7 +2,7 @@ class Lead
   include ActiveModel::Model
   include ActiveModel::Validations
 
-  attr_accessor :id, :name, :email, :business_name, :telephone_number, :contact_time, :notes, :reference
+  attr_accessor :access_token, :pGUID, :pAccName, :pPartner, :name, :email, :business_name, :telephone_number, :contact_time, :notes, :reference
 
   VALID_FULLNAME_REGEX = /\A\w+\s{1}\w+\z/
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/
