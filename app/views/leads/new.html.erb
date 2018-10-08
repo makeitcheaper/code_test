@@ -10,6 +10,9 @@
   <%= f.input :business_name %>
   <%= f.input :telephone_number %>
   <%= f.input :email %>
+  <%= f.input :contact_time, as: :datetime, html5: true, input_html: { min: "#{ DateTime.now.to_s}" } %>
+  <%= f.input :notes, as: :text, input_html: { maxlength: 255 } %>
+  <%= f.input :reference, as: :text, input_html: { maxlength: 50 } %>
 
   <%= f.submit :create %>
 <% end %>

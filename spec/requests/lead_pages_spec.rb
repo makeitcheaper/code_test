@@ -19,5 +19,19 @@ describe "Lead pages" do
       it { should have_title('Make it Cheaper') }
       it { should have_content('Invalid') }
     end
+
+    describe "with valid information" do
+      let(:lead) { FactoryBot.build(:lead) }
+      before do
+        fill_in "Name",    with: lead.name
+        fill_in "Email",   with: lead.email
+        fill_in "Business name",    with: lead.business_name
+        fill_in "Telephone number", with: lead.telephone_number
+
+        click_button "create"
+      end
+
+      it { should have_content('Thanks') }
+    end
   end
 end
