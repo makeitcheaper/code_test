@@ -1,5 +1,5 @@
 class LeadsController < ApplicationController
-  def index
+  def new
     @lead = Lead.new
   end
 
@@ -8,7 +8,8 @@ class LeadsController < ApplicationController
     if @lead.valid?
       submission = LeadApiService.new(@lead).call
     else
-      render 'index'
+      flash.now[:danger] = 'Invalid'
+      render 'new'
     end
   end
 
