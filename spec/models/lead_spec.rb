@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 describe Lead do
-
   before do
     @lead = Lead.new(name: "Example User", email: "user@example.com",
                      business_name: "foobar", telephone_number: "01344123456",

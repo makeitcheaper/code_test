@@ -3,7 +3,7 @@ require 'rails_helper'
 describe "Lead pages" do
   subject { page }
 
-  describe "Contact page" do
+  describe "contact page" do
     before { visit root_path }
 
     it { should have_content('About Us') }
@@ -14,10 +14,12 @@ describe "Lead pages" do
     before { visit root_path }
 
     describe "with invalid information" do
-      before { click_button "create" }
+      VCR.use_cassette('incorrect_result') do
+        before { click_button "create" }
 
-      it { should have_title('Make it Cheaper') }
-      it { should have_content('Invalid') }
+        it { should have_title('Make it Cheaper') }
+        it { should have_content('Invalid') }
+      end
     end
 
     describe "with valid information" do
@@ -29,10 +31,13 @@ describe "Lead pages" do
         fill_in "Business name",    with: lead.business_name
         fill_in "Telephone number", with: lead.telephone_number
 
-        click_button "create"
+        VCR.use_cassette 'requests/valid_information' do
+          click_button "create"
+
+          it { should have_content('Thanks') }
+        end
       end
 
-      it { should have_content('Thanks') }
     end
   end
 end

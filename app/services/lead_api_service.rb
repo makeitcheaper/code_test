@@ -9,6 +9,6 @@ class LeadApiService
   end
 
   def call
-    self.class.post('/api/v1/create', body: lead.instance_values.to_json)
+    self.class.post('/api/v1/create', body: lead.as_json)
   end
 end

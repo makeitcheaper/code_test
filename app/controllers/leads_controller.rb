@@ -6,7 +6,7 @@ class LeadsController < ApplicationController
   def create
     @lead = Lead.new(lead_params)
     if @lead.valid?
-      submission = LeadApiService.new(@lead).call
+      response = LeadApiService.new(@lead).call
       flash[:success] = 'Thanks'
       render 'new'
     else
