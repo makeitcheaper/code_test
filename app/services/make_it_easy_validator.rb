@@ -1,7 +1,8 @@
 class MakeItEasyValidator
   include ActiveModel::Model
   
-  validates :name, :business_name, :telephone_number, presence: true
+  validates :name, :business_name, :telephone_number, :email, presence: true
+  validates :email, format: { with: URI::MailTo::EMAIL_REGEXP, message: 'Email is invalid format' }
   
   def initialize(form_inputs)
     form_inputs.each do |key, value|
