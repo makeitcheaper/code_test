@@ -1,4 +1,5 @@
-require 'rails_helper'
+require 'spec_helper'
+require_relative '../../app/services/make_it_easy_client'
 
 RSpec.describe MakeItEasyClient do
   let(:make_it_easy_client) {

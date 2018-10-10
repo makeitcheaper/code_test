@@ -1,4 +1,5 @@
-require 'rails_helper'
+require 'spec_helper'
+require_relative '../../app/services/make_it_easy_validator'
 
 RSpec.describe MakeItEasyValidator do
   let(:validator) { MakeItEasyValidator.new(form_inputs) }
@@ -65,7 +66,7 @@ RSpec.describe MakeItEasyValidator do
         let(:email) { "invalid-email" }
 
         it 'returns false when email is invalid' do
-          expect(validator.errors[:email]).to include('Email is invalid format')
+          expect(validator.errors[:email]).to include('invalid format')
         end
       end
     end

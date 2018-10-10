@@ -1,8 +1,10 @@
+require 'active_model'
+
 class MakeItEasyValidator
   include ActiveModel::Model
   
   validates :name, :business_name, :telephone_number, :email, presence: true
-  validates :email, format: { with: URI::MailTo::EMAIL_REGEXP, message: 'Email is invalid format' }
+  validates :email, format: { with: URI::MailTo::EMAIL_REGEXP, message: 'invalid format' }
   
   attr_reader :form_inputs
 
