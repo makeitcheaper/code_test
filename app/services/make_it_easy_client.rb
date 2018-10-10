@@ -5,6 +5,9 @@ class MakeItEasyClient
     HTTParty.post(create_lead_endpoint, body: params, timeout: 3)
 
   rescue HTTParty::Error, SocketError, Net::OpenTimeout => e
+    # In the event of this occuring it would be sensible to log the error
+    # to a monitoring provider like Airbrake. I decided not to implement this
+    # due to time restrictions and it felt like overkill for a technical test.
     return OpenStruct.new(success?: false, errors: { make_it_easy: ['API call failed'] })
   end
 
