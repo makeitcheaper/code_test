@@ -49,6 +49,13 @@ RSpec.describe LeadsController, type: :request do
         expect(session['errors'].messages.any?).to eq(true)
         expect(response).to redirect_to leads_new_path
       end
+
+      it 'redirects to an error page with form inputs in the session' do
+        post "/leads/create",  params: invalid_params
+        form_params_session = session['form_params'].permit!.to_h
+
+        expect(form_params_session).to include(invalid_params)
+      end
     end
   end
 end

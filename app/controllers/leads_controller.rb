@@ -1,6 +1,7 @@
 class LeadsController < ApplicationController
 
   def new
+    @form_params = OpenStruct.new(session[:form_params])
   end
 
   def create
@@ -12,6 +13,7 @@ class LeadsController < ApplicationController
     
       m.failure :validate do |errors|
         session[:errors] = errors
+        session[:form_params] = params
         redirect_to leads_new_path
       end
     end 

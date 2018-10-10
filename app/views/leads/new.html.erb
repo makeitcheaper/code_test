@@ -1,12 +1,12 @@
 <form action="/leads/create" method="POST">
   Name:<br>
-  <input type="text" name="name"><br>
+  <input type="text" name="name" value="<%= @form_params.try(:name) %>"><br>
   Business name:<br>
-  <input type="text" name="business_name"><br>
+  <input type="text" name="business_name" value="<%= @form_params.try(:business_name) %>"><br>
   Phone:<br>
-  <input type="text" name="telephone_number"><br>
+  <input type="text" name="telephone_number" value="<%= @form_params.try(:telephone_number) %>"><br>
   Email:<br>
-  <input type="text" name="email">
+  <input type="text" name="email" value="<%= @form_params.try(:email) %>">
   <input type="submit" value="Submit">
 </form>
 
