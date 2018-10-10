@@ -1,0 +1,17 @@
+<form action="/leads/create" method="POST">
+  Name:<br>
+  <input type="text" name="name"><br>
+  Business name:<br>
+  <input type="text" name="business_name"><br>
+  Phone:<br>
+  <input type="text" name="telephone_number"><br>
+  Email:<br>
+  <input type="text" name="email">
+  <input type="submit" value="Submit">
+</form>
+
+<% if session['errors'].present? %>
+  <% session['errors'].each do |field, messages| %>
+    <p> <%= field %>: <%= messages.join(", ") %>
+  <% end %>
+<% end %>

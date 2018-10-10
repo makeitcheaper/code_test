@@ -5,7 +5,7 @@ RSpec.describe MakeItEasyClient do
     MakeItEasyClient.new
   }
 
-  describe '#create' do
+  describe '#create_lead' do
     let(:http_client) { HTTParty }
 
     let(:form_params) {
