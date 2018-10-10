@@ -12,7 +12,7 @@ RSpec.describe MakeItEasyClient do
     let(:form_params) {
       {
         'name' => 'Adrian Booth',
-        'business_name' => 'Sir Adrian Booth',
+        'business_name' => 'Booth Consultants',
         'telephone_number' => '07811111111',
         'email' => 'test@testing.com',
         'access_token' => ENV["LEAD_API_TOKEN"],
@@ -30,13 +30,17 @@ RSpec.describe MakeItEasyClient do
       let(:error) { HTTParty::Error }
 
       it 'returns an OpenStruct that responds to success? and contains errors' do
-        expect(make_it_easy_client.create_lead(form_params)).to eq(OpenStruct.new(success?: false, errors: {make_it_easy: ["API call failed"]}))
+        expect(make_it_easy_client.create_lead(form_params)).to eq(
+          OpenStruct.new(success?: false, errors: {make_it_easy: ["API call failed"]})
+        )
       end
     end
 
     it 'makes a http call to makeiteasy create endpoint' do
       expect(http_client).to receive(:post).with(
-        "http://mic-leads.dev-test.makeiteasy.com/api/v1/create", body: form_params, timeout: 3
+        "http://mic-leads.dev-test.makeiteasy.com/api/v1/create",
+        body: form_params,
+        timeout: 3
       )
 
       make_it_easy_client.create_lead(form_params)

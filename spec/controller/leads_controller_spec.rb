@@ -5,7 +5,7 @@ RSpec.describe LeadsController, type: :request do
     let(:valid_params) {
       {
         'name' => 'Adrian Booth',
-        'business_name' => 'Sir Adrian Booth',
+        'business_name' => 'Booth Consultants',
         'telephone_number' => '07811111111',
         'email' => 'test@testing.com',
         'access_token' => ENV["LEAD_API_TOKEN"],
@@ -34,7 +34,7 @@ RSpec.describe LeadsController, type: :request do
       let(:invalid_params) {
         {
           'name' => '',
-          'business_name' => 'Sir Adrian Booth',
+          'business_name' => 'Booth Consultants',
           'telephone_number' => '07811111111',
           'email' => 'test@testing.com',
           'access_token' => ENV["LEAD_API_TOKEN"],

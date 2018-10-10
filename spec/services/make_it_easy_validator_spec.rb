@@ -13,7 +13,7 @@ RSpec.describe MakeItEasyValidator do
   }
   
   let(:name) { 'Adrian Booth' }
-  let(:business_name) { 'Sir Adrian Booth' }
+  let(:business_name) { 'Booth Consultants' }
   let(:telephone_number) { '07811111111'}
   let(:email) { 'test@testing.com' }
   
