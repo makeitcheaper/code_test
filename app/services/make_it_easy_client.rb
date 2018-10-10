@@ -1,13 +1,11 @@
 class MakeItEasyClient
-  class LeadSignUpError < StandardError; end
-
   API_VERSION = 'v1'
 
   def create_lead(params)
-    HTTParty.post(create_lead_endpoint, body: params)
+    HTTParty.post(create_lead_endpoint, body: params, timeout: 3)
 
-  rescue HTTParty::Error
-    raise LeadSignUpError
+  rescue HTTParty::Error, SocketError, Net::OpenTimeout => e
+    return OpenStruct.new(success?: false, errors: { make_it_easy: ['API call failed'] })
   end
 
   private

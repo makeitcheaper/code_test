@@ -29,14 +29,14 @@ RSpec.describe MakeItEasyClient do
 
       let(:error) { HTTParty::Error }
 
-      it 'raises a LeadSignUpError' do
-        expect{ make_it_easy_client.create_lead(form_params) }.to raise_error(MakeItEasyClient::LeadSignUpError)
+      it 'returns an OpenStruct that responds to success? and contains errors' do
+        expect(make_it_easy_client.create_lead(form_params)).to eq(OpenStruct.new(success?: false, errors: {make_it_easy: ["API call failed"]}))
       end
     end
 
     it 'makes a http call to makeiteasy create endpoint' do
       expect(http_client).to receive(:post).with(
-        "http://mic-leads.dev-test.makeiteasy.com/api/v1/create", body: form_params
+        "http://mic-leads.dev-test.makeiteasy.com/api/v1/create", body: form_params, timeout: 3
       )
 
       make_it_easy_client.create_lead(form_params)

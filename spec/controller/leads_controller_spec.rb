@@ -2,24 +2,25 @@ require 'rails_helper'
 
 RSpec.describe LeadsController, type: :request do
   describe '#create' do
-    context 'when the api call is successful' do
-      before do
-        allow(HTTParty).to receive(:post).and_return(response)
-      end
-      
-      let(:response) { double('Response', :success? => true, status: 301) }
-      let(:valid_params) {
-        {
-          'name' => 'Adrian Booth',
-          'business_name' => 'Sir Adrian Booth',
-          'telephone_number' => '07811111111',
-          'email' => 'test@testing.com',
-          'access_token' => ENV["LEAD_API_TOKEN"],
-          'pGUID' => ENV["LEAD_API_PGUID"],
-          'pAccName' => ENV["LEAD_API_PACCNAME"],
-          'pPartner' => ENV["LEAD_API_PPARTNER"],  
-        }
+    let(:valid_params) {
+      {
+        'name' => 'Adrian Booth',
+        'business_name' => 'Sir Adrian Booth',
+        'telephone_number' => '07811111111',
+        'email' => 'test@testing.com',
+        'access_token' => ENV["LEAD_API_TOKEN"],
+        'pGUID' => ENV["LEAD_API_PGUID"],
+        'pAccName' => ENV["LEAD_API_PACCNAME"],
+        'pPartner' => ENV["LEAD_API_PPARTNER"],
       }
+    }
+
+    before do
+      allow(HTTParty).to receive(:post).and_return(response)
+    end
+
+    context 'when the api call is successful' do
+      let(:response) { double('Response', :success? => true, status: 301) }
 
       it 'redirects to a thank you page with a successful message' do
         post "/leads/create",  params: valid_params
@@ -55,6 +56,22 @@ RSpec.describe LeadsController, type: :request do
         form_params_session = session['form_params'].permit!.to_h
 
         expect(form_params_session).to include(invalid_params)
+      end
+    end
+
+    context 'when the request is unsuccessful because of an api failure' do
+      let(:response) { double(
+                        'Response',
+                        :success? => false,
+                        status: 500,
+                        errors: { make_it_easy: ['API call failed'] })
+                      }
+
+      it 'redirects to the new page with a try again message in a session' do
+        post "/leads/create",  params: valid_params
+
+        expect(session['errors']).to eq({ make_it_easy: ['API call failed'] })
+        expect(response).to redirect_to leads_new_path
       end
     end
   end

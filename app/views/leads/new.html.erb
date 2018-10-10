@@ -10,8 +10,8 @@
   <input type="submit" value="Submit">
 </form>
 
-<% if session['errors'].present? %>
-  <% session['errors'].each do |field, messages| %>
+<% if errors.present? %>
+  <% errors.each do |field, messages| %>
     <p> <%= field %>: <%= messages.join(", ") %>
   <% end %>
 <% end %>

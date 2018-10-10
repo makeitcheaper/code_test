@@ -11,17 +11,14 @@ class LeadsController < ApplicationController
         redirect_to action: :success
       end
     
-      m.failure :validate do |errors|
+      m.failure do |errors|
         session[:errors] = errors
         session[:form_params] = params
         redirect_to leads_new_path
       end
     end 
   end
-  
-  def success
-  end
-  
+
   private
   
   def lead_params

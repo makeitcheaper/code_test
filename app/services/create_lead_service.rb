@@ -17,7 +17,7 @@ class CreateLeadService
     if response.success?
       Success(response)
     else
-      Failure(response)
+      Failure(response.errors)
     end
   end
 end

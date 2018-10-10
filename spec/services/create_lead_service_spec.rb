@@ -43,7 +43,7 @@ RSpec.describe CreateLeadService do
     end
 
     context 'when the api call is unsuccessful' do
-      let(:response) { double('Response', :success? => false) }
+      let(:response) { double('Response', :success? => false, errors: {error_message: 'error'}) }
 
       it 'returns a Failure result object' do
         expect(create_lead_service.call({'params' => 'invalid params'}).class).to eq(Dry::Monads::Result::Failure)
