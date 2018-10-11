@@ -8,6 +8,7 @@ gem 'coffee-rails'
 gem 'execjs'
 gem 'httparty'
 gem 'jquery-rails'
+gem 'mini_racer', platforms: :ruby
 gem 'popper_js', '~> 1.12.3'
 gem 'puma', '~> 3.7'
 gem 'rails', '~> 5.1'
@@ -16,7 +17,6 @@ gem 'simple_form'
 gem 'sprockets-rails', require: 'sprockets/railtie'
 gem 'turbolinks', '~> 5.0.0'
 gem 'uglifier', '4.1.3'
-gem 'mini_racer', platforms: :ruby
 
 group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'
@@ -32,14 +32,14 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails', '~> 0.3'
   gem 'rubocop'
-  gem 'sshkit-sudo'
   gem 'sqlite3', '~> 1.3'
+  gem 'sshkit-sudo'
 end
 
 group :test do
   gem 'database_cleaner'
-  gem 'factory_bot_rails', '~> 4.8', '>= 4.8.2'
   gem 'factory_bot', '~> 4.8', '>= 4.8.2'
+  gem 'factory_bot_rails', '~> 4.8', '>= 4.8.2'
   gem 'faker'
   gem 'rails-controller-testing'
   gem 'rspec-rails', '~> 3.7'
