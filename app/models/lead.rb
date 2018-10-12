@@ -3,6 +3,8 @@
 require 'uri'
 
 class Lead
+  extend ActiveModel::Naming
+  include ActiveModel::Conversion
   include ActiveModel::Validations
 
   ATTRIBUTES = %i[
@@ -17,7 +19,7 @@ class Lead
   validates_length_of :telephone_number, is: 11
   validates_numericality_of :telephone_number
   validates_format_of :email, with: URI::MailTo::EMAIL_REGEXP
-  validates_format_of :contact_time, with: /\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}/
+  validates_presence_of :contact_time
   validates_length_of :notes, maximum: 255
   validates_length_of :reference, maximum: 50
 
@@ -31,5 +33,9 @@ class Lead
 
   def as_json
     super only: ATTRIBUTES.map(&:to_s)
+  end
+
+  def persisted?
+    false
   end
 end

@@ -5,7 +5,5 @@ RSpec.shared_context 'successful lead creation', shared_context: :metadata do
     response = subject.submit
 
     expect(response).to be_truthy
-    expect(response['message']).to eql('Enqueue success')
-    expect(response['errors']).to be_empty
   end
 end

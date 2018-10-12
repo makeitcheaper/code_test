@@ -9,7 +9,7 @@ describe LeadSubmitter do
       business_name: 'Bob Jones Enterprises',
       telephone_number: '02071234567',
       email: 'bob@bobjones.com',
-      contact_time: '2008-01-01 03:00:00',
+      contact_time: DateTime.now,
       notes: '',
       reference: ''
     }
@@ -58,11 +58,6 @@ describe LeadSubmitter do
       it_behaves_like 'unsuccessful lead creation', :email
     end
 
-    context 'with a contact time in an incorrect format' do
-      let(:lead_params) { valid_params.merge(contact_time: 'NOT_A_CONTACT_TIME') }
-      it_behaves_like 'unsuccessful lead creation', :contact_time
-    end
-
     context 'with notes that are too long' do
       let(:lead_params) { valid_params.merge(notes: 'A' * 256) }
       it_behaves_like 'unsuccessful lead creation', :notes
@@ -95,6 +90,23 @@ describe LeadSubmitter do
         expect(lead.errors).not_to be_empty
         expect(lead.errors.messages).to have_key :telephone_number
         expect(lead.errors.messages[:telephone_number][0]).to eql 'must contain have valid phone number with 11 numbers. string max 13 chars'
+      end
+    end
+  end
+
+  context 'server timeout' do
+    before do
+      stub_request(:post, LeadSubmitter::ENDPOINT)
+        .to_timeout
+    end
+
+    context 'when our validations pass but a server error occurs' do
+      let(:lead_params) { valid_params }
+      it 'raises a validation error' do
+        expect(subject.submit).to be false
+        expect(lead.errors).not_to be_empty
+        expect(lead.errors.messages).to have_key :base
+        expect(lead.errors.messages[:base][0]).to eql 'An error occurred while we were processing this request'
       end
     end
   end

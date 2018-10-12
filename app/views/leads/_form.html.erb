@@ -1,0 +1,18 @@
+<% if lead.errors.any? %>
+  <div class="alert alert-danger" role="alert">
+    <h4 class="alert-heading">Oh Oh!</h4>
+    We couldnt submit the lead, please correct any errors and try again.
+  </div>
+<% end %>
+
+<%= simple_form_for(lead, html: { class: 'form-horizontal' }) do |form| %>
+  <%= form.input :name %>
+  <%= form.input :business_name %>
+  <%= form.input :telephone_number, as: :tel %>
+  <%= form.input :email, as: :email %>
+  <%= form.input :contact_time, as: :datetime %>
+  <%= form.input :notes, as: :text %>
+  <%= form.input :reference %>
+
+  <%= form.submit 'Create', class: 'btn btn-lg btn-primary' %>
+<% end %>

@@ -3,6 +3,12 @@
 require 'uri'
 
 class LeadSubmitter
+  class << self
+    def submit(lead)
+      new(lead).submit
+    end
+  end
+
   attr_reader :lead
 
   ENDPOINT = 'http://mic-leads.dev-test.makeiteasy.com/api/v1/create'
@@ -30,7 +36,10 @@ class LeadSubmitter
       return false
     end
 
-    request.parsed_response
+    true
+  rescue Net::OpenTimeout
+    set_timeout_error
+    false
   end
 
   private
@@ -38,10 +47,15 @@ class LeadSubmitter
   def request
     @request ||= HTTParty.post(
       ENDPOINT,
-      body: URI.encode_www_form(DEFAULT_OPTIONS.merge(lead.as_json)),
+      body: URI.encode_www_form(request_data),
       headers: DEFAULT_HEADERS,
       format: :json
     )
+  end
+
+  def request_data
+    DEFAULT_OPTIONS.merge(lead.as_json)
+                   .merge(contact_time: lead.contact_time.strftime("%Y-%m-%d %H:%M:%S"))
   end
 
   def parse_errors
@@ -49,5 +63,9 @@ class LeadSubmitter
       error_parts = error_description.match(/'(\w*)'.*\((.*)\)/)
       lead.errors.add(error_parts[1], :invalid, message: error_parts[2])
     end
+  end
+
+  def set_timeout_error
+    lead.errors.add(:base, 'An error occurred while we were processing this request')
   end
 end

@@ -1,0 +1,12 @@
+<%= render 'header' %>
+
+<div class="position-relative overflow-hidden p-3 p-md-5 m-md-3">
+  <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3">
+    <div class="alert alert-success" role="alert">
+      <h4 class="alert-heading">Success</h4>
+      The lead was successfully submitted.
+    </div>
+  </div>
+
+  <%= render 'form', lead: Lead.new %>
+</div>
