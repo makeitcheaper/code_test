@@ -13,15 +13,15 @@ class MakeItEasyClient
 
   private
 
+  def create_lead_endpoint
+    api_url + '/create'
+  end
+
   def base_url
     ENV['LEAD_API_URI']
   end
 
   def api_url
     base_url + "/api/#{API_VERSION}"
-  end
-
-  def create_lead_endpoint
-    api_url + '/create'
   end
 end

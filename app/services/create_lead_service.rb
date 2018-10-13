@@ -3,6 +3,8 @@ class CreateLeadService
   step :validate
   step :call_api
 
+  private
+
   def validate(params)
     validation = MakeItEasyValidator.new(params)
     if validation.valid?
