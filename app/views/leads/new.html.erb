@@ -1,15 +1,17 @@
+<h2>Want us to call you back?</h2>
+<h3>Submit your details below and we'll get right back to you</h3>
 <div class="col-lg-5">
 <div class="align-items-center">
   <form action="/leads/create" method="POST">  
      <div class="form-group">
        Name:<br>
-       <input type="text" name="name" class="form-control" value="<%= @form_params.try(:name) %>"><br>
+       <input type="text" name="name" class="form-control" required value="<%= @form_params.try(:name) %>"><br>
        Business name:<br>
-       <input type="text" name="business_name" class="form-control" value="<%= @form_params.try(:business_name) %>"><br>
+       <input type="text" name="business_name" class="form-control" required value="<%= @form_params.try(:business_name) %>"><br>
        Phone:<br>
-       <input type="text" name="telephone_number" class="form-control" value="<%= @form_params.try(:telephone_number) %>"><br>
+       <input type="text" name="telephone_number" class="form-control" required value="<%= @form_params.try(:telephone_number) %>"><br>
        Email:<br>
-       <input type="text" name="email" class="form-control" value="<%= @form_params.try(:email) %>">
+       <input type="text" name="email" class="form-control" required value="<%= @form_params.try(:email) %>">
        <input type="submit" class="btn btn-primary" value="Submit">
      </div>
   </form>
@@ -17,8 +19,8 @@
 </div>
 
 <div class="col-lg-5">
-  <% if errors.present? %>
-    <% errors.each do |field, messages| %>
+  <% if @errors.present? %>
+    <% @errors.each do |field, messages| %>
       <p class="alert-danger"> <%= field %>: <%= messages.join(", ") %>
     <% end %>
   <% end %>
