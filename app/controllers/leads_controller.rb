@@ -1,22 +1,28 @@
 class LeadsController < ApplicationController
 
   def new
-    @form_params = OpenStruct.new(session[:form_params])
+    @form_params = OpenStruct.new(params)
   end
 
   def create
     CreateLeadService.new.call(params) do |m|
       m.success do |value|
-        session[:success] = 'Lead successfully created'
         redirect_to action: :success
       end
     
       m.failure do |errors|
         session[:errors] = errors
-        session[:form_params] = params
-        redirect_to leads_new_path
+        redirect_to leads_new_path(
+          name: params[:name],
+          business_name: params[:business_name],
+          telephone_number: params[:telephone_number],
+          email: params[:email]
+        )
       end
     end 
+  end
+
+  def success
   end
 
   private
