@@ -5,13 +5,13 @@
   <form action="/leads/create" method="POST">  
      <div class="form-group">
        Name:<br>
-       <input type="text" name="name" class="form-control" required value="<%= @form_params.try(:name) %>"><br>
+       <input type="text" name="lead[name]" class="form-control" required value="<%= @form_params.try(:name) %>"><br>
        Business name:<br>
-       <input type="text" name="business_name" class="form-control" required value="<%= @form_params.try(:business_name) %>"><br>
+       <input type="text" name="lead[business_name]" class="form-control" required value="<%= @form_params.try(:business_name) %>"><br>
        Phone:<br>
-       <input type="text" name="telephone_number" class="form-control" required value="<%= @form_params.try(:telephone_number) %>"><br>
+       <input type="text" name="lead[telephone_number]" class="form-control" required value="<%= @form_params.try(:telephone_number) %>"><br>
        Email:<br>
-       <input type="text" name="email" class="form-control" required value="<%= @form_params.try(:email) %>">
+       <input type="text" name="lead[emails]" class="form-control" required value="<%= @form_params.try(:email) %>">
        <input type="submit" class="btn btn-primary" value="Submit">
      </div>
   </form>

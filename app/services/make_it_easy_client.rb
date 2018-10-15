@@ -2,7 +2,7 @@ class MakeItEasyClient
   API_VERSION = 'v1'
 
   def create_lead(params)
-    HTTParty.post(create_lead_endpoint, body: params, timeout: 3)
+    HTTParty.post(create_lead_endpoint, body: request_params(params), timeout: 3)
 
   rescue HTTParty::Error, SocketError, Net::OpenTimeout => e
     # In the event of this occuring it would be sensible to log the error
@@ -23,5 +23,18 @@ class MakeItEasyClient
 
   def api_url
     base_url + "/api/#{API_VERSION}"
+  end
+
+  def request_params(params)
+    params.merge!(access_params)
+  end
+
+  def access_params
+    {
+      access_token: ENV['LEAD_API_TOKEN'],
+      pGUID: ENV['LEAD_API_PGUID'],
+      pAccName: ENV['LEAD_API_PACCNAME'],
+      pPartner: ENV['LEAD_API_PPARTNER']
+    }
   end
 end

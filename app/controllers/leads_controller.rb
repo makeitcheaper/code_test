@@ -5,11 +5,11 @@ class LeadsController < ApplicationController
   end
 
   def create
-    CreateLeadService.new.call(params) do |m|
+    CreateLeadService.new.call(lead_params) do |m|
       m.success do |value|
         redirect_to action: :success
       end
-    
+
       m.failure do |errors|
         session[:errors] = errors
         redirect_to leads_new_path(
@@ -26,17 +26,8 @@ class LeadsController < ApplicationController
   end
 
   private
-  
+
   def lead_params
-     params.require(:lead).permit!(
-       :name, 
-       :business_name, 
-       :telephone_number, 
-       :email, 
-       :access_token, 
-       :pGUID, 
-       :pAccName, 
-       :pPartner
-     )
+    params.require(:lead)[0].permit(:name, :business_name,  :telephone_number, :email)
   end
 end
