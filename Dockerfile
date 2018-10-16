@@ -38,6 +38,7 @@ RUN chown -R $APP_USER:$APP_USER /home/app
 USER $APP_USER
 RUN gem install bundler
 RUN gem install rails
+RUN gem install rspec
 RUN gem install spring
 RUN gem install rubocop
 USER root

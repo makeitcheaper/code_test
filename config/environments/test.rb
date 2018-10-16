@@ -14,6 +14,7 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :test
   config.active_support.deprecation = :stderr
   config.cache_store = :null_store
+  config.active_record.sqlite3.represent_boolean_as_integer = true
 
   config.lead_api_paccname = 'test_paccname'
   config.lead_api_pguid = 'c5b88f56-00e8-11e8-ba89-0ed5f89f718b'
