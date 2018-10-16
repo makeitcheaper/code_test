@@ -8,11 +8,13 @@ gem 'coffee-rails'
 gem 'execjs'
 gem 'httparty'
 gem 'jquery-rails'
+gem 'mysql2', '~> 0.5'
 gem 'popper_js', '~> 1.12.3'
 gem 'puma', '~> 3.7'
 gem 'rails', '~> 5.1'
 gem 'sass-rails', '~> 5.0'
 gem 'simple_form'
+gem 'slim'
 gem 'sprockets-rails', require: 'sprockets/railtie'
 gem 'turbolinks', '~> 5.0.0'
 gem 'uglifier', '4.1.3'
@@ -48,4 +50,4 @@ group :test do
   gem 'webmock', '~> 3.1'
 end
 
-gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
+gem 'tzinfo-data'
