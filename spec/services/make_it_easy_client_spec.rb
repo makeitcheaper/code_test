@@ -31,7 +31,7 @@ RSpec.describe MakeItEasyClient do
 
       it 'returns an OpenStruct that responds to success? and contains errors' do
         expect(make_it_easy_client.create_lead(form_params)).to eq(
-          OpenStruct.new(success?: false, errors: {make_it_easy: ["API call failed"]})
+          OpenStruct.new(success?: false, errors: {make_it_easy: ["API call failed. Please try again"]})
         )
       end
     end
@@ -41,7 +41,7 @@ RSpec.describe MakeItEasyClient do
         "http://mic-leads.dev-test.makeiteasy.com/api/v1/create",
         body: form_params,
         timeout: 3
-      )
+      ).and_return(double('Response', code: 200))
 
       make_it_easy_client.create_lead(form_params)
     end
