@@ -39,12 +39,14 @@ group :development, :test do
 end
 
 group :test do
+  gem 'chromedriver-helper'
   gem 'database_cleaner'
   gem 'factory_bot_rails', '~> 4.8', '>= 4.8.2'
   gem 'factory_bot', '~> 4.8', '>= 4.8.2'
   gem 'faker'
   gem 'rails-controller-testing'
   gem 'rspec-rails', '~> 3.7'
+  gem 'selenium-webdriver'
   gem 'shoulda-matchers'
   gem 'vcr', '~> 4.0'
   gem 'webmock', '~> 3.1'
