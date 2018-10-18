@@ -20,9 +20,9 @@ RSpec.describe 'Lead Api' do
   end
 
 
-  it 'raises an error on 500' do
+  it 'raises an error on 400' do
     stub_request(:any, lead_api_uri_re)
-      .to_return(status: 500)
+      .to_return(status: 400)
 
     lead = build(:lead_thomas)
     lead_api = LeadApi.new

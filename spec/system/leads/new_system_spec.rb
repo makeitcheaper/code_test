@@ -3,6 +3,7 @@ require 'rails_helper'
 
 RSpec.describe 'Leads New', type: :system  do
   let (:lead) { build(:lead_thomas) }
+  let (:lead_api_uri_re) { Regexp.new URI.parse(LeadApi.base_uri).host }
 
 
   it 'displays and submits form fields' do
@@ -13,8 +14,7 @@ RSpec.describe 'Leads New', type: :system  do
     fill_in 'lead[email]', with: lead.email
     fill_in 'lead[phone_number]', with: lead.phone_number
 
-    url_re = Regexp.new URI.parse(LeadApi.base_uri).host
-    stub_request(:any, url_re)
+    stub_request(:any, lead_api_uri_re)
     click_button 'Register'
 
     # Check all values are present in body of the api request
@@ -35,8 +35,7 @@ RSpec.describe 'Leads New', type: :system  do
     fill_in 'lead[email]', with: lead.email
     fill_in 'lead[phone_number]', with: lead.phone_number
 
-    url_re = Regexp.new URI.parse(LeadApi.base_uri).host
-    stub_request(:any, url_re).to_return(status: 500)
+    stub_request(:any, lead_api_uri_re).to_return(status: 400)
     click_button 'Register'
 
     # Check all values are present in body of the api request

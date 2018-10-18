@@ -17,4 +17,13 @@ RSpec.configure do |config|
   Dir['./spec/support/shared_context/*.rb'].each { |f| require f }
 
   config.include FactoryBot::Syntax::Methods
+
+  config.before(:each) do
+    # XXX: This does not work.
+    # XXX: It doesn't work even if copies to each example
+    # XXX: I have to stub urls in each example to prevent spending
+    #      excess time debugging external gem configuration that is
+    #      supposed to work and works in other projects
+    WebMock.disable_net_connect!
+  end
 end

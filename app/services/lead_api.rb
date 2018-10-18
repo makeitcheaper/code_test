@@ -5,7 +5,8 @@ class LeadApi
   base_uri "#{ENV["LEAD_API_URI"]}/api/v1"
   # debug_output $stdout
   headers(
-    'Content-Type' => 'application/json'
+    'Content-Type' => 'application/x-www-form-urlencoded',
+    'Accept' => 'application/json'
   )
 
   def post_lead lead
@@ -21,12 +22,12 @@ class LeadApi
     auth_params = {
       access_token: ENV["LEAD_API_ACCESS_TOKEN"],
       pGUID: ENV["LEAD_API_PGUID"],
-      pAccName: ENV["PACCNAME"],
-      pPartner: ENV["PPARTNER"]
+      pAccName: ENV["LEAD_API_PACCNAME"],
+      pPartner: ENV["LEAD_API_PPARTNER"]
     }
 
     @response = self.class.post "/create",
-      body: params.merge(auth_params).to_json
+      query: params.merge(auth_params)
 
     unless @response.success?
       raise HTTParty::ResponseError, @response
