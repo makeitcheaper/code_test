@@ -17,6 +17,15 @@
 - `rake db:create db:migrate` (If you use DB, sqlite3. Possible to do the test without any DB)
 - `rails s`
 
+I expect this works as no changes were made that would break it.  However, as
+I run apps in docker I use a slight variation to boot the project. Consider
+doing the below in case you encounter a difficulty.
+
+    docker-compose up -d
+    # after a moment you can visit the app in your browser at
+    # "http://localhost/leads/new"
+
+
 ## Test
     bundle exec rspec
 
