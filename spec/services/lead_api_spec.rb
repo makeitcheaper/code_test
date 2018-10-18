@@ -2,6 +2,8 @@ require 'rails_helper'
 
 
 RSpec.describe 'Lead Api' do
+  include WebMockHelpers
+
   let (:lead_api_uri_re) { Regexp.new URI.parse(LeadApi.base_uri).host }
 
   it 'submits a lead' do
@@ -14,9 +16,8 @@ RSpec.describe 'Lead Api' do
     assert ret
 
     # Check all values are present in body of the api request
-    assert_requested(:post, "#{LeadApi.base_uri}/create", times: 1) do |req|
-      lead.to_h.values.all? { |value| req.body =~ /#{value}/ }
-    end
+    assert_requested_with_values :post, /#{LeadApi.base_uri}\/create/,
+      lead.to_h.values
   end
 
 
@@ -32,8 +33,7 @@ RSpec.describe 'Lead Api' do
     )
 
     # Check all values are present in body of the api request
-    assert_requested(:post, "#{LeadApi.base_uri}/create", times: 1) do |req|
-      lead.to_h.values.all? { |value| req.body =~ /#{value}/ }
-    end
+    assert_requested_with_values :post, /#{LeadApi.base_uri}\/create/,
+      lead.to_h.values
   end
 end

@@ -2,8 +2,12 @@ require 'rails_helper'
 
 
 RSpec.describe 'Leads New', type: :system  do
+  include WebMockHelpers
+
   let (:lead) { build(:lead_thomas) }
-  let (:lead_api_uri_re) { Regexp.new URI.parse(LeadApi.base_uri).host }
+
+  let (:lead_api_host) { URI.parse(LeadApi.base_uri).host }
+  let (:lead_api_uri_re) { Regexp.new lead_api_host }
 
 
   it 'displays and submits form fields' do
@@ -18,9 +22,8 @@ RSpec.describe 'Leads New', type: :system  do
     click_button 'Register'
 
     # Check all values are present in body of the api request
-    assert_requested(:post, "#{LeadApi.base_uri}/create", times: 1) do |req|
-      lead.to_h.values.all? { |value| req.body =~ /#{value}/ }
-    end
+    assert_requested_with_values :post, /#{LeadApi.base_uri}\/create/,
+      lead.to_h.values
 
     expect(page.current_url).to eq thank_you_leads_url
     expect(page).to have_content("Thank you")
@@ -39,9 +42,8 @@ RSpec.describe 'Leads New', type: :system  do
     click_button 'Register'
 
     # Check all values are present in body of the api request
-    assert_requested(:post, "#{LeadApi.base_uri}/create", times: 1) do |req|
-      lead.to_h.values.all? { |value| req.body =~ /#{value}/ }
-    end
+    assert_requested_with_values :post, /#{LeadApi.base_uri}\/create/,
+      lead.to_h.values
 
     error_msg = I18n.t 'lead_api_errors.internal_error_retry_later'
     expect(page).to have_content(error_msg)

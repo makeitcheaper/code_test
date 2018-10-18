@@ -14,10 +14,10 @@ RSpec.describe LeadsController, type: :request do
 
 
   describe 'POST /leads' do
-    it 'responds with redirect when success' do
+    it 'responds with redirect when correct params' do
       lead = build :lead_thomas
 
-      stub_request(:any, lead_api_uri_re).to_return(status: 400)
+      stub_request(:any, lead_api_uri_re)
       post '/leads', params: { lead: lead.to_h }
 
       expect(response).to be_redirect
@@ -27,7 +27,7 @@ RSpec.describe LeadsController, type: :request do
     it 'responds with success when validations fail' do
       lead = Lead.new
 
-      stub_request(:any, lead_api_uri_re).to_return(status: 400)
+      stub_request(:any, lead_api_uri_re)
       post '/leads', params: { lead: lead.to_h }
 
       expect(response).to be_successful
