@@ -15,7 +15,7 @@ RSpec.describe 'Leads New', type: :system  do
 
     url_re = Regexp.new URI.parse(LeadApi.base_uri).host
     stub_request(:any, url_re)
-    click_button 'Submit'
+    click_button 'Register'
 
     # Check all values are present in body of the api request
     assert_requested(:post, "#{LeadApi.base_uri}/create", times: 1) do |req|
@@ -37,7 +37,7 @@ RSpec.describe 'Leads New', type: :system  do
 
     url_re = Regexp.new URI.parse(LeadApi.base_uri).host
     stub_request(:any, url_re).to_return(status: 500)
-    click_button 'Submit'
+    click_button 'Register'
 
     # Check all values are present in body of the api request
     assert_requested(:post, "#{LeadApi.base_uri}/create", times: 1) do |req|
