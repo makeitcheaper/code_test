@@ -1,2 +1,33 @@
-h1 Leads#new
-p Find me in app/views/leads/new.html.slim
+- flash.each do |name, msg|
+  = content_tag :div, msg, class: name
+
+
+.col-md-6.col-md-offset-3.panel.panel-default
+  .panel-body
+    h2 Create a lead
+
+    = form_for @lead, url: {action: 'create'} do |f|
+      = form_group_for f, :full_name, label: false do
+        .input-group
+          span.input-group-addon
+            span.fa.fa-user.fa-lg.fa-fw
+          = f.text_field :full_name, class: 'form-control', placeholder: 'Full Name'
+      = form_group_for f, :business_name, label: false do
+        .input-group
+          span.input-group-addon
+            span.fa.fa-user.fa-lg.fa-fw
+          = f.text_field :business_name, class: 'form-control'
+
+      = form_group_for f, :email, label: false do
+        .input-group
+          span.input-group-addon
+            span.fa.fa-user.fa-lg.fa-fw
+          = f.email_field :email, class: 'form-control'
+
+      = form_group_for f, :phone_number, label: false do
+        .input-group
+          span.input-group-addon
+            span.fa.fa-user.fa-lg.fa-fw
+          = f.text_field :phone_number, class: 'form-control'
+
+      = f.submit 'Submit', class: 'btn btn-primary', data: { disable_with: 'Submitting' }
