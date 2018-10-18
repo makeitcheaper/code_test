@@ -8,7 +8,7 @@ class LeadsController < ApplicationController
       render action: :new, lead: lead_params
     end
   rescue HTTParty::ResponseError => e
-    flash.now[:error] = I18n.t('lead_api_errors.internal_error_retry_later')
+    flash.now[:danger] = I18n.t('lead_api_errors.internal_error_retry_later')
     render action: :new, lead: lead_params
   end
 

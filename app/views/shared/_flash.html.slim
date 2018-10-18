@@ -1,0 +1,5 @@
+.row.justify-content-center
+  .col-12.col-md-8.col-lg-6.pb-5
+    - flash.each do |name, msg|
+      div class="alert alert-#{name}" role="alert"
+        = msg
