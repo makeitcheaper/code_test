@@ -34,6 +34,12 @@ RSpec.describe Lead, type: :model do
       lead = build(:lead_thomas, email: "asdf")
       assert lead.invalid?
     end
+
+    it "is invalid if longer than 80 characters" do
+      email = 'a' * 81
+      lead = build(:lead_thomas, email: email)
+      assert lead.invalid?
+    end
   end
 
 
