@@ -9,9 +9,11 @@ class Lead
   attr_accessor *self.attributes
 
 
-  validates_presence_of :full_name, :business_name, :email, :phone_number
+  validates :full_name, length: { maximum: 100 }, presence: true,
+    format: { with: /\A\w+\s\w+\z/ }
+  validates :business_name, length: { maximum: 100 }, presence: true
   validates :email, email: true
-  validates :phone_number, phone: true
+  validates :phone_number, length: { maximum: 13 }, presence: true, phone: true
 
 
   def to_h
