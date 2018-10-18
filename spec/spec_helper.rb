@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'webmock/rspec'
+require 'factory_bot'
 WebMock.disable_net_connect!(allow_localhost: true)
 
 RSpec.configure do |config|
@@ -14,4 +15,6 @@ RSpec.configure do |config|
   config.shared_context_metadata_behavior = :apply_to_host_groups
 
   Dir['./spec/support/shared_context/*.rb'].each { |f| require f }
+
+  config.include FactoryBot::Syntax::Methods
 end
