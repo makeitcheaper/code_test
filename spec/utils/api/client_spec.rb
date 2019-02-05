@@ -27,20 +27,40 @@ describe Api::Client do
 
   context '#call' do
     context 'when API call successful' do
-      before do
-        stub_request(:get, uri)
-          .with(
-            query: params,
-            headers: headers
-          )
-          .to_return(
-            body: MultiJson.dump(parsed_json),
-            status: 200
-          )
+      context 'when receiving' do
+        before do
+          stub_request(:get, uri)
+            .with(
+              query: params,
+              headers: headers
+            )
+            .to_return(
+              body: MultiJson.dump(parsed_json),
+              status: 200
+            )
+        end
+
+        it 'returns parsed JSON' do
+          expect(subject.call(:get, params, headers)).to eq(parsed_json)
+        end
       end
 
-      it 'returns parsed JSON' do
-        expect(subject.call(:get, params, headers)).to eq(parsed_json)
+      context 'when sending' do
+        before do
+          stub_request(:post, uri)
+            .with(
+              body: MultiJson.dump(params),
+              headers: headers.merge('Content-Type' => 'application/json')
+            )
+            .to_return(
+              body: MultiJson.dump(parsed_json),
+              status: 200
+            )
+        end
+
+        it 'returns parsed JSON' do
+          expect(subject.call(:post, params, headers)).to eq(parsed_json)
+        end
       end
     end
 
@@ -57,7 +77,7 @@ describe Api::Client do
       end
 
       it 'raises an error' do
-        message = 'Unsuccessful API call, uri: http://example.com/api, params: (param1: value1, param2: value2), status: 500'
+        message = 'Unsuccessful API call, method: get, uri: http://example.com/api, params: (param1: value1, param2: value2), status: 500'
         expect { subject.call(:get, params, headers) }
           .to raise_error(Api::ClientError, message)
       end
@@ -77,7 +97,7 @@ describe Api::Client do
       end
 
       it 'raises an error' do
-        message = 'Unsuccessful API call, uri: http://example.com/api, params: (param1: value1, param2: value2), status: 200'
+        message = 'Unsuccessful API call, method: get, uri: http://example.com/api, params: (param1: value1, param2: value2), status: 200'
         expect { subject.call(:get, params, headers) }
           .to raise_error(Api::ClientError, message)
       end
@@ -97,7 +117,7 @@ describe Api::Client do
       end
 
       it 'raises an error' do
-        message = 'Unsuccessful API call, uri: http://example.com/api, params: (param1: value1, param2: value2), status: 200'
+        message = 'Unsuccessful API call, method: get, uri: http://example.com/api, params: (param1: value1, param2: value2), status: 200'
         expect { subject.call(:get, params, headers) }
           .to raise_error(Api::ClientError, message)
       end

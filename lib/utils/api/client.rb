@@ -10,7 +10,7 @@ module Api
     def call(method, params={}, headers={})
       if RECEIVE_METHODS.include?(method)
         response = call_receive_method(method, params, headers)
-      elsif SEND_METHOD.include?(method)
+      elsif SEND_METHODS.include?(method)
         response = call_send_method(method, params, headers)
       else
         raise 'HTTP method not supported'
@@ -18,6 +18,7 @@ module Api
       process_response(response)
     rescue => e
       raise ClientError.new(
+        method: method,
         uri: uri,
         params: params,
         status: response.try(:status).presence || e.try(:response).try(:status).presence
@@ -28,6 +29,13 @@ module Api
 
     def call_receive_method(method, params={}, headers={})
       Faraday.public_send(method, uri, params, headers)
+    end
+
+    def call_send_method(method, params={}, headers={})
+      headers = headers.with_indifferent_access
+      headers['Content-Type'] ||= 'application/json'
+
+      Faraday.public_send(method, uri, MultiJson.dump(params), headers)
     end
 
     attr_implement :call_send_method, %i[method, params, headers]

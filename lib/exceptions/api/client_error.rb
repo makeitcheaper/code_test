@@ -7,13 +7,14 @@ module Api
       .config_for('api_client')
       .with_indifferent_access
 
-    def initialize(msg='Unsuccessful API call', uri: nil, params: {}, status: nil)
+    def initialize(msg='Unsuccessful API call', method: nil, uri: nil, params: {}, status: nil)
       params_string = params
         .with_indifferent_access
         .except(*CONFIG[:secret_params])
         .collect {|param, value| "#{param}: #{value}"}
         .join(', ')
       message = msg
+      message += ", method: #{method}" if method.present?
       message += ", uri: #{uri}" if uri.present?
       message += ", params: (#{params_string})" if params_string.present?
       message += ", status: #{status}" if status.present?
