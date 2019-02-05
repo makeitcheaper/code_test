@@ -1,5 +1,19 @@
 {
-  "name": "something",
+  "name": "codetest",
+  "version": "1.0.0",
   "private": true,
-  "dependencies": {}
+  "description": "makeitcheaper.com code test",
+  "keywords": [
+    "makeitcheaper",
+    "test"
+  ],
+  "homepage": "ideapiece.com",
+  "bugs": {
+    "email": "mat@ideapiece.com"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+    "stylelint": "^9.9"
+  }
 }

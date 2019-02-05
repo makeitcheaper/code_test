@@ -17,9 +17,22 @@ module MoneySuperMarket
   class Application < Rails::Application
     config.load_defaults 5.1
 
+    config.time_zone = 'Europe/London'
+
     # Don't generate system test files.
     config.generators.system_tests = nil
 
-    config.autoload_paths += %W[#{config.root}/app/services]
+    auto_load_paths = [
+      Rails.root.join('app', 'services'),
+      Rails.root.join('lib', 'tools'),
+      Rails.root.join('lib', 'exceptions')
+    ]
+
+    config.autoload_paths.push(*auto_load_paths)
+
+    config.generators do |g|
+      g.template_engine :haml
+      g.test_framework :rspec
+    end
   end
 end
