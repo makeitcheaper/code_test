@@ -1,4 +1,9 @@
 Rails.application.configure do
+  config.after_initialize do
+      Bullet.enable        = true
+      Bullet.rails_logger  = true
+      Bullet.raise         = true # raise an error if n+1 query occurs
+  end
   config.cache_classes = true
   config.eager_load = false
   config.public_file_server.enabled = true
