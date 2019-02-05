@@ -33,9 +33,9 @@ module Api
 
     def call_send_method(method, params={}, headers={})
       headers = headers.with_indifferent_access
-      headers['Content-Type'] ||= 'application/json'
+      headers['Content-Type'] ||= 'application/x-www-form-urlencoded'
 
-      Faraday.public_send(method, uri, MultiJson.dump(params), headers)
+      Faraday.public_send(method, uri, params.to_param, headers)
     end
 
     attr_implement :call_send_method, %i[method, params, headers]
