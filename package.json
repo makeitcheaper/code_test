@@ -12,8 +12,14 @@
     "email": "mat@ideapiece.com"
   },
   "dependencies": {
+    "@rails/webpacker": "3.5",
+    "vue": "^2.6.2",
+    "vue-loader": "14.2.2",
+    "vue-template-compiler": "^2.6.2",
+    "vue-turbolinks": "^2.0.4"
   },
   "devDependencies": {
-    "stylelint": "^9.9"
+    "stylelint": "^9.9",
+    "webpack-dev-server": "2.11.2"
   }
 }

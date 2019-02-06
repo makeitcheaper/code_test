@@ -16,3 +16,6 @@
 //= require turbolinks
 //= require jquery_ujs
 //= require site
+//= require i18n
+//= require i18n/translations
+//= require js-routes

@@ -14,6 +14,7 @@ Style/Documentation:
 
 AllCops:
   Exclude:
+    - 'node_modules/**/*'
     - 'config.ru'
     - 'Capfile'
     - 'Rakefile'

@@ -1,9 +1,11 @@
 en:
-  hello: "Hello world"
+  leads:
+    create:
+      registration_successful: "You have registered successfully"
   warnings:
     page_dont_exist: "Unfortunatly page you requested doesn't exist"
   success:
-    post_form_created: "Your register success"
+    post_form_created: "You registered successfully"
   lead_api_errors:
     name_is_required: "Name is required"
     firstname_space_lastname: "Name must contain firstname and lastname separe by space (e.g. 'John Smith')"
@@ -16,3 +18,10 @@ en:
     notes_max_255_chars: "Notes can contain max 255 chars"
     reference_less_50_chars: "Reference can contain 50 chars"
     internal_error_retry_later: "Internal app error, try again later."
+  js:
+    full_name: "Your full name"
+    business_name: "Name of your business"
+    email: "Email"
+    telephone_number: "Phone number"
+    notes: "Any comments?"
+    submit: "Contact us"

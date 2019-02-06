@@ -35,5 +35,7 @@ module MoneySuperMarket
       g.template_engine :haml
       g.test_framework :rspec
     end
+
+    config.middleware.use I18n::JS::Middleware
   end
 end
