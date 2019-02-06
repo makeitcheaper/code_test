@@ -2,47 +2,44 @@
 
 module Api
   class Client
-    RECEIVE_METHODS = %i[get].freeze
-    SEND_METHODS = %i[post put patch].freeze
+    METHODS_WITH_BODY = %i[post put patch].freeze
 
     attr_private_initialize :uri
 
-    def call(method, params={}, headers={})
-      if RECEIVE_METHODS.include?(method)
-        response = call_receive_method(method, params, headers)
-      elsif SEND_METHODS.include?(method)
-        response = call_send_method(method, params, headers)
-      else
-        raise 'HTTP method not supported'
-      end
-      process_response(response)
+    def call(method, query: {}, body: {}, headers: {})
+      response = receive_response(method, query: query, body: body, headers: headers)
+      json_hash = process_response(method, response)
+      raise 'HTTP status unsuccessful' unless response.success?
+      json_hash
     rescue => e
+
       raise ClientError.new(
         method: method,
         uri: uri,
-        params: params,
-        status: response.try(:status).presence || e.try(:response).try(:status).presence
+        query: query,
+        body: body,
+        status: response.try(:status).presence || e.try(:response).try(:status).presence,
+        response: json_hash
       )
     end
 
     private
 
-    def call_receive_method(method, params={}, headers={})
-      Faraday.public_send(method, uri, params, headers)
+    def receive_response(method, query: {}, body: {}, headers: {})
+      Faraday.public_send(method) do |request|
+        request.url(uri)
+        request.params.merge!(query) if query.present?
+        request.headers.merge!(headers) if headers.present?
+        if body.present?
+          raise 'Body parameters not accepted  for this method' unless METHODS_WITH_BODY.include?(method)
+          request.headers['Content-Type'] = 'application/x-www-form-urlencoded'
+          request.body = body.to_param
+        end
+      end
     end
 
-    def call_send_method(method, params={}, headers={})
-      headers = headers.with_indifferent_access
-      headers['Content-Type'] ||= 'application/x-www-form-urlencoded'
-
-      Faraday.public_send(method, uri, params.to_param, headers)
-    end
-
-    attr_implement :call_send_method, %i[method, params, headers]
-
-    def process_response(response)
-      raise 'HTTP status unsuccessful' unless response.success?
-      raise 'Response string blank' if response.body.blank?
+    def process_response(method, response)
+      raise 'Response string blank' if response.body.blank? 
       parsed_json = MultiJson.load(response.body)
       raise 'Rasponse blank' if parsed_json.blank?
       parsed_json.with_indifferent_access

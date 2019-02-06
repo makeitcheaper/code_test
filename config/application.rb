@@ -24,6 +24,7 @@ module MoneySuperMarket
 
     auto_load_paths = [
       Rails.root.join('app', 'services'),
+      Rails.root.join('app', 'endpoints'),
       Rails.root.join('lib', 'utils'),
       Rails.root.join('lib', 'exceptions')
     ]

@@ -1,0 +1,48 @@
+development:
+  mic_leads:
+    v1:
+      default: &default
+        access_token: <%= ENV['LEAD_API_ACCESS_TOKEN'] %>
+        domain: <%= ENV['LEAD_API_URI'] %>
+      create:
+        <<: *default
+        path: /api/v1/create
+        p_guid: <%= ENV['LEAD_API_PGUID'] %>
+        p_acc_name: <%= ENV['LEAD_API_PACCNAME'] %>
+        p_partner: <%= ENV['LEAD_API_PPARTNER'] %>
+test:
+  mic_leads:
+    v1:
+      default: &default
+        access_token: test_access_token
+        domain: http://example.com
+      create:
+        <<: *default
+        path: /api/v1/create
+        p_guid: test_p_guid
+        p_acc_name: test_p_acc_name
+        p_partner: test_p_partner
+staging:
+  mic_leads:
+    v1:
+      default: &default
+        access_token: <%= ENV['LEAD_API_ACCESS_TOKEN'] %>
+        domain: <%= ENV['LEAD_API_URI'] %>
+      create:
+        <<: *default
+        path: /api/v1/create
+        p_guid: <%= ENV['LEAD_API_PGUID'] %>
+        p_acc_name: <%= ENV['LEAD_API_PACCNAME'] %>
+        p_partner: <%= ENV['LEAD_API_PPARTNER'] %>
+production:
+  mic_leads:
+    v1:
+      default: &default
+        access_token: <%= ENV['LEAD_API_ACCESS_TOKEN'] %>
+        domain: <%= ENV['LEAD_API_URI'] %>
+      create:
+        <<: *default
+        path: /api/v1/create
+        p_guid: <%= ENV['LEAD_API_PGUID'] %>
+        p_acc_name: <%= ENV['LEAD_API_PACCNAME'] %>
+        p_partner: <%= ENV['LEAD_API_PPARTNER'] %>
