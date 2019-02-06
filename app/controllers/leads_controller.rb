@@ -13,7 +13,7 @@ class LeadsController < ApplicationController
 
   def lead_params
     params.require(:lead).permit(
-      #:name,
+      :name,
       :business_name,
       :telephone_number,
       :email,
