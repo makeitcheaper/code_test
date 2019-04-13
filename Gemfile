@@ -17,6 +17,7 @@ gem 'simple_form'
 gem 'sprockets-rails', require: 'sprockets/railtie'
 gem 'turbolinks', '~> 5.0.0'
 gem 'uglifier', '4.1.3'
+gem 'sqlite3'
 
 group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'
@@ -32,7 +33,7 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails', '~> 0.3'
   gem 'rubocop'
-  gem 'sqlite3', '~> 1.3'
+  gem 'sqlite3'#, '~> 1.3'
   gem 'sshkit-sudo'
 end
 
