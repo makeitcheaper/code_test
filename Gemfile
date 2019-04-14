@@ -18,6 +18,7 @@ gem 'sprockets-rails', require: 'sprockets/railtie'
 gem 'turbolinks', '~> 5.0.0'
 gem 'uglifier', '4.1.3'
 gem 'sqlite3'
+gem 'faraday', '~> 0.9.2'
 
 group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'

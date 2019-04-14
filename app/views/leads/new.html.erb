@@ -1,0 +1,20 @@
+<div class="jumbotron">
+  <h5 class="display-5">Thank you for your interest in our services</h5>
+  <p class="lead">Since 2007, we’ve been dedicated to saving UK businesses the time, hassle and frustration of dealing with utilities. Whether it’s electricity, gas, insurance, phone & broadband, water, or even finance, we offer a hassle-free and fair alternative to traditional suppliers.</p>
+  <hr class="my-4">
+  <div>
+    <%= form_for @lead, url: create_lead_url do |f| %>
+      <%= notice %>
+      <%= @lead.errors.full_messages.join(', ') %>
+
+      <%= f.text_field :name, placeholder: 'name' %>
+      <%= f.text_field :business_name, hint: 'No special characters.' %>
+      <%= f.text_field :telephone_number, placeholder: 'UK number' %>
+      <%= f.email_field :email, placeholder: 'user@domain.com' %>
+      <%= f.submit 'Send' %>
+    <% end %>
+  </div>
+
+</div>
+
+

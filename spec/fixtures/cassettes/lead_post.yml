@@ -1,0 +1,57 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://mic-leads.dev-test.makeiteasy.com/api/v1/create
+    body:
+      encoding: US-ASCII
+      string: access_token=fd078ec94a8b9fe09379fda7bc8b2986&pGUID=CFFBF53F-6D89-4B5B-8B36-67A97F18EDEB&pAccName=MicDevtest&pPartner=MicDevtest&name=John+Smith&business_name=Bank&telephone_number=%2B442222333444&email=smith%40bank.co.uk
+    headers:
+      User-Agent:
+      - Faraday v0.9.2
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Status:
+      - 201 Created
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Etag:
+      - W/"a3647de73f830d5cb5c63d7ccddd62ec"
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      X-Runtime:
+      - '0.018435'
+      X-Request-Id:
+      - 99963abe-4075-44cf-a9b3-3b956b8a1c0d
+      Date:
+      - Sun, 14 Apr 2019 12:24:42 GMT
+      X-Powered-By:
+      - Phusion Passenger 5.1.12
+      - cloud66
+      Server:
+      - nginx + Phusion Passenger 5.1.12
+    body:
+      encoding: UTF-8
+      string: '{"message":"Enqueue success","errors":[]}'
+    http_version: 
+  recorded_at: Sun, 14 Apr 2019 12:24:42 GMT
+recorded_with: VCR 4.0.0
