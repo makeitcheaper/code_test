@@ -16,7 +16,7 @@ RSpec.describe LeadsController, :vcr, type: :controller do
           lead: {
             name: 'John Smith',
             business_name: 'Bank',
-            telephone_number: '+442222333444',
+            telephone_number: '02222333444',
             email: 'smith@bank.co.uk'
           }
         }
@@ -32,7 +32,7 @@ RSpec.describe LeadsController, :vcr, type: :controller do
           lead: {
             name: 'John Smith',
             business_name: 'Bank',
-            telephone_number: '+442222333444',
+            telephone_number: '02222333444',
             email: 'smith@bank.co.uk'
           }
         }
@@ -49,7 +49,7 @@ RSpec.describe LeadsController, :vcr, type: :controller do
           lead: {
             name: 'John Smith',
             business_name: 'Bank',
-            telephone_number: '+442222333444',
+            telephone_number: '02222333444',
             email: 'smith@bank.co.uk'
           }
         }

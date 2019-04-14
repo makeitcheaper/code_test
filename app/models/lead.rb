@@ -9,4 +9,20 @@ class Lead
   validates :telephone_number, length: { maximum: 13 }
   validates :email, presence: true
   validates :email, length: { maximum: 80 }
+  validate :name_composition
+  validate :telephone_composition
+ 
+  private
+  def name_composition
+    if name !~ /\w+\s\w+/
+      errors.add(:name , "must be composed with 2 separated words")
+    end
+  end
+
+  def telephone_composition
+    if telephone_number !~ /^(\D*\d){11}$/
+      errors.add(:telephone_number , "must be valid UK phone number")
+    end
+  end
+
 end
