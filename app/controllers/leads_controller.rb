@@ -1,4 +1,5 @@
 class LeadsController < ApplicationController
+  add_flash_types :success
 
   def new
     @lead = Lead.new
@@ -25,11 +26,11 @@ class LeadsController < ApplicationController
           req.headers['Content-Type'] = 'application/x-www-form-urlencoded'
           req.body = URI.encode_www_form(lead_body)
         end
-        
         if response.status == 201
-          redirect_to new_lead_url, notice: "Thank you, we will contact you soon!"
+          redirect_to new_lead_url, success: 'Thank you, we will contact you soon!'
         else
-          render :new, notice: "Some error"
+          flash.now[:error] = 'We were unable to send your request right now. Please try later.'
+          render :new
         end
     else
       render :new

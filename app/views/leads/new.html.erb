@@ -2,6 +2,11 @@
   <h5 class="display-5">Thank you for your interest in our services</h5>
   <p class="lead">Since 2007, we’ve been dedicated to saving UK businesses the time, hassle and frustration of dealing with utilities. Whether it’s electricity, gas, insurance, phone & broadband, water, or even finance, we offer a hassle-free and fair alternative to traditional suppliers.</p>
   <hr class="my-4">
+  <% if flash[:error] %>
+    <div class="alert alert-danger" role="alert"><%= flash[:error] %></div>
+  <% elsif flash[:success] %>
+    <div class="alert alert-success" role="alert"><%= flash[:success] %></div>
+  <% end %>
   <div>
     <%= form_for @lead, url: create_lead_url do |f| %>
       <%= notice %>
