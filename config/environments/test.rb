@@ -20,4 +20,6 @@ Rails.application.configure do
   config.lead_api_ppartner = 'test_ppartner'
   config.lead_api_access_token = 'test_access_token'
   config.lead_api_base_uri = 'http://test_lead_api/api/v1'
+
+  config.active_record.sqlite3.represent_boolean_as_integer = true
 end

@@ -27,4 +27,6 @@ Rails.application.configure do
   config.lead_api_ppartner = ENV['LEAD_API_PPARTNER']
   config.lead_api_access_token = ENV['LEAD_API_ACCESS_TOKEN']
   config.lead_api_base_uri = ENV['LEAD_API_URI']
+
+  config.active_record.sqlite3.represent_boolean_as_integer = true
 end
