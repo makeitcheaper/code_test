@@ -1,0 +1,8 @@
+= simple_form_for(@customer, method: :post, url: callback_path) do |f|
+  = f.input :name
+  = f.input :business_name
+  = f.input :telephone_number, as: :tel
+  = f.input :email, as: :email
+  = f.input :notes, as: :text
+  = f.input :reference
+  = f.button :submit

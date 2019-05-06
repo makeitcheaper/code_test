@@ -14,3 +14,4 @@ db/*.sql
 puma_staging.rb
 public/assets
 **/Thumbs.db
+spec/fixtures/cassettes/*

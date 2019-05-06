@@ -7,6 +7,9 @@ Metrics/LineLength:
   Exclude:
     - 'spec/**/*.rb'
 
+Metrics/MethodLength:
+  Max: 15
+
 Style/Documentation:
   Exclude:
     - 'app/**/*.rb'
