@@ -25,28 +25,50 @@ RSpec.describe CallbackService do
     let(:service) { described_class.new(customer) }
     let(:customer) { Customer.new(attrs) }
 
-    let(:attrs) do
-      {
-        name: 'John Doe',
-        business_name: 'Doe Inc',
-        telephone_number: '01234 567 890',
-        email: 'john.doe@doeinc.co.uk'
-      }
-    end
-
-    let(:expected) do
-      {
-        message: 'Enqueue success',
-        errors: []
-      }
-    end
-
     before do
       VCR.use_cassette('callback_service', record: :new_episodes) do
         service.call
       end
     end
 
-    it { expect(service.response.parsed_response).to eq(expected.with_indifferent_access) }
+    context 'valid attrs' do
+      let(:attrs) do
+        {
+          name: 'John Doe',
+          business_name: 'Doe Inc',
+          telephone_number: '01234 567 890',
+          email: 'john.doe@doeinc.co.uk'
+        }
+      end
+
+      let(:expected) do
+        {
+          code: nil,
+          message: nil
+        }
+      end
+
+      it { expect(service.error).to eq(expected) }
+    end
+
+    context 'invalid attrs' do
+      let(:attrs) do
+        {
+          name: 'John Doe',
+          business_name: 'Doe Inc',
+          telephone_number: '01234 567 890',
+          email: nil
+        }
+      end
+
+      let(:expected) do
+        {
+          code: 400,
+          message: 'Format errors on validation'
+        }
+      end
+
+      it { expect(service.error).to eq(expected) }
+    end
   end
 end

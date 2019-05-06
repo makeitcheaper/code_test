@@ -16,10 +16,11 @@ class CallbackService
   def call
     @response = Callback::Client.enqueue(customer)
     handle_error(@response.parsed_response['message'], @response.code) unless @response.success?
+    self
   end
 
   def error?
-    error&.message
+    error && error[:message]
   end
 
   def handle_error(message, code)
