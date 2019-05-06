@@ -8,16 +8,17 @@ SimpleForm.setup do |config|
     b.optional :pattern
     b.optional :min_max
     b.optional :readonly
-    b.use :label_input
+    b.use :label
+    b.use :input, error_class: 'is-invalid'
     b.use :hint,  wrap_with: { tag: :span, class: :hint }
-    b.use :error, wrap_with: { tag: :span, class: :error }
+    b.use :error, wrap_with: { tag: :div }
   end
 
   config.default_wrapper = :default
   config.boolean_style = :nested
   config.button_class = 'btn'
   config.error_notification_tag = :div
-  config.error_notification_class = 'error_notification'
+  config.error_notification_class = 'alert alert-danger'
   config.browser_validations = false
   config.boolean_label_class = 'checkbox'
 end

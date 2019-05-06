@@ -1,8 +1,26 @@
+- if @callback&.error?
+  %div{class: 'alert alert-danger', role: 'alert'}
+    %h3
+      Error
+    
+    %ul
+    - @callback.error[:message].each do |error|
+      %li
+        = error
+  
 = simple_form_for(@customer, method: :post, url: callback_path) do |f|
-  = f.input :name
-  = f.input :business_name
-  = f.input :telephone_number, as: :tel
-  = f.input :email, as: :email
-  = f.input :notes, as: :text
-  = f.input :reference
-  = f.button :submit
+  = f.error_notification
+  .form-group
+    = f.input :name, input_html: { class: 'form-control' }, error_html: { class: 'invalid-feedback'}
+  .form-group
+    = f.input :business_name, input_html: { class: 'form-control' }, error_html: { class: 'invalid-feedback'}
+  .form-group
+    = f.input :telephone_number, as: :tel, input_html: { class: 'form-control' }, error_html: { class: 'invalid-feedback'}
+  .form-group
+    = f.input :email, as: :email, input_html: { class: 'form-control' }, error_html: { class: 'invalid-feedback'}
+  .form-group
+    = f.input :notes, as: :text, input_html: { class: 'form-control' }, error_html: { class: 'invalid-feedback'}
+  .form-group
+    = f.input :reference, input_html: { class: 'form-control' }, error_html: { class: 'invalid-feedback'}
+  .form-group
+    = f.button :submit, 'Request callback', class: 'btn btn-primary'

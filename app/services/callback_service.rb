@@ -15,7 +15,7 @@ class CallbackService
 
   def call
     @response = Callback::Client.enqueue(customer)
-    handle_error(@response.parsed_response['message'], @response.code) unless @response.success?
+    handle_error(@response.parsed_response['errors'], @response.code) unless @response.success?
     self
   end
 

@@ -11,6 +11,7 @@ module Callbackable
     @customer = Customer.new(customer_params)
     if @customer.valid?
       @callback = CallbackService.call(@customer)
+      render :index unless @callback.response&.success?
     else
       render :index
     end
