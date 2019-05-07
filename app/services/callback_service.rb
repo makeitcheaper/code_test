@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class CallbackService
-  attr_accessor :customer, :response, :error
+  attr_accessor :customer, :response, :response_code
 
   def self.call(customer)
     new(customer).call
@@ -10,20 +10,16 @@ class CallbackService
   def initialize(customer)
     @customer = customer
     @response = nil
-    @error = { message: nil, code: nil }
+    @response_code = nil
   end
 
   def call
     @response = Callback::Client.enqueue(customer)
-    handle_error(@response.parsed_response['errors'], @response.code) unless @response.success?
+    @response_code = @response.code
     self
   end
 
   def error?
-    error && error[:message]
-  end
-
-  def handle_error(message, code)
-    @error = { message: message, code: code }
+    [400, 401, 501].include?(@response_code)
   end
 end

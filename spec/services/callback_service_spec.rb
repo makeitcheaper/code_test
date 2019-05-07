@@ -17,8 +17,6 @@ RSpec.describe CallbackService do
     end
 
     it { expect(service.customer).to eq(customer) }
-    it { expect(service.error[:message]).to be_nil }
-    it { expect(service.error[:code]).to be_nil }
   end
 
   describe 'call' do
@@ -41,14 +39,7 @@ RSpec.describe CallbackService do
         }
       end
 
-      let(:expected) do
-        {
-          code: nil,
-          message: nil
-        }
-      end
-
-      it { expect(service.error).to eq(expected) }
+      it { expect(service.response_code).to eq(201) }
     end
 
     context 'invalid attrs' do
@@ -61,14 +52,7 @@ RSpec.describe CallbackService do
         }
       end
 
-      let(:expected) do
-        {
-          code: 400,
-          message: ["Field 'email' is blank", "Field 'email' wrong format"]
-        }
-      end
-
-      it { expect(service.error).to eq(expected) }
+      it { expect(service.response_code).to eq(400) }
     end
   end
 end

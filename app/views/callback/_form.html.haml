@@ -1,12 +1,6 @@
 - if @callback&.error?
   %div{class: 'alert alert-danger', role: 'alert'}
-    %h3
-      Error
-    
-    %ul
-    - @callback.error[:message].each do |error|
-      %li
-        = error
+    = error_message(@callback.response_code)
   
 = simple_form_for(@customer, method: :post, url: callback_path) do |f|
   = f.error_notification
