@@ -9,6 +9,7 @@ class Customer
 
   validates :uid, :name, :business_name, :telephone_number, :email, presence: true
   validates :name, :business_name, length: { maximum: 100 }
+  validates :name, format: { with: VALID_NAMES }
   validates :telephone_number, length: { maximum: 13 }, format: { with: VALID_PHONE_NUMBERS, multiline: true }
   validates :email, length: { maximum: 80 }, format: { with: VALID_EMAILS }
   validates :notes, length: { maximum: 255 }

@@ -6,7 +6,7 @@ en:
     post_form_created: "Your register success"
   lead_api_errors:
     name_is_required: "Name is required"
-    firstname_space_lastname: "Name must contain firstname and lastname separe by space (e.g. 'John Smith')"
+    firstname_space_lastname: "Name must contain firstname and lastname separated by space (e.g. 'John Smith')"
     business_is_required: "Business name is required"
     business_100_chars: "Business name can contain max 100 chars"
     phone_number_required: "Telephone number is required"
@@ -16,3 +16,25 @@ en:
     notes_max_255_chars: "Notes can contain max 255 chars"
     reference_less_50_chars: "Reference can contain 50 chars"
     internal_error_retry_later: "Internal app error, try again later."
+
+  errors:
+    attributes:
+      name:
+        blank: "Name is required"
+        invalid: "Name must contain firstname and lastname separated by space (e.g. 'John Smith')"
+        too_long: "Name can contain max 100 chars"
+      business_name:
+        blank: "Business name is required"
+        too_long: "Business name can contain max 100 chars"
+      telephone_number:
+        blank: "Telephone number is required"
+        invalid: "Telephone number need 11 numbers (can accept international syntax +44)"
+        too_long: "Telephone number need 11 numbers (can accept international syntax +44)"
+      email:
+        blank: "Email is required"
+        invalid: "Email invalid"
+        too_long: "Name can contain max 80 chars"
+      notes:
+        too_long: "Notes can contain max 255 chars"
+      reference:
+        too_long: "Reference can contain 50 chars"

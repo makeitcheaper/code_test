@@ -64,7 +64,7 @@ RSpec.describe CallbackService do
       let(:expected) do
         {
           code: 400,
-          message: 'Format errors on validation'
+          message: ["Field 'email' is blank", "Field 'email' wrong format"]
         }
       end
 
