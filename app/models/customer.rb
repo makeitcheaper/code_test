@@ -2,6 +2,7 @@
 
 require 'securerandom'
 
+# Customer: This model contains the attributes and validations.
 class Customer
   include ActiveModel::Model
 

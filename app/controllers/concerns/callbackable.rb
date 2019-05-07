@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Callbackable contains all of the logic for the CallbackController
 module Callbackable
   extend ActiveSupport::Concern
 

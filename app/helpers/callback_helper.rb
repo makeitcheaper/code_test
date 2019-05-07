@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module CallbackHelper
+  # Return an error message based on the response code.
   def error_message(code)
     case code
     when 400

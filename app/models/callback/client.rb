@@ -1,15 +1,17 @@
 # frozen_string_literal: true
 
 module Callback
+  # Callback::Client connects to the 'Make it Better' API
+  # and submits the request for a callback.
   class Client
     include HTTParty
 
     base_uri ENV['LEAD_API_URI']
 
     class << self
+      # Enqueue a callback
       def enqueue(customer)
-        query = prepare_query(customer)
-        post('/api/v1/create', query: query)
+        post('/api/v1/create', query: prepare_query(customer))
       end
 
       private
