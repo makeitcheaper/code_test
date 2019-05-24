@@ -18,7 +18,7 @@
 ## 4. Your app must start by running the following commands
 
 - `bundle install`
-- `rake db:create db:migrate` (If you use a database or sqlite3. It's possible to do the test without any database)
+- `rake db:create db:migrate` (If you use a database. It's possible to do the test without any database)
 - `rails s`
 
 ## Test

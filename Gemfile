@@ -4,12 +4,10 @@ source 'https://rubygems.org'
 
 gem 'autoprefixer-rails'
 gem 'bootstrap', '>= 4.3.1'
-gem 'coffee-rails'
 gem 'execjs'
 gem 'httparty'
 gem 'jquery-rails'
 gem 'mini_racer', platforms: :ruby
-gem 'popper_js', '~> 1.14.3'
 gem 'puma', '~> 3.7'
 gem 'rails', '~> 5.1'
 gem 'sass-rails', '~> 5.0'
@@ -26,14 +24,10 @@ group :development do
 end
 
 group :development, :test do
-  gem 'awesome_print'
   gem 'capybara', '~> 2.16'
   gem 'dotenv-rails', '~> 2.2'
   gem 'pry-byebug'
-  gem 'pry-rails', '~> 0.3'
   gem 'rubocop'
-  gem 'sqlite3', '~> 1.3'
-  gem 'sshkit-sudo'
 end
 
 group :test do
