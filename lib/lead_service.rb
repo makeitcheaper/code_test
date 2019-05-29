@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'net/http'
-require 'byebug'
 require 'json'
 
 class LeadService
