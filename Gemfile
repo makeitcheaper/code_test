@@ -8,6 +8,7 @@ gem 'http_logger'
 gem 'puma', '~> 3.7'
 gem 'rails', '~> 5.1'
 gem 'sass-rails', '~> 5.0'
+gem 'simple_form'
 gem 'sqlite3', '~> 1.3.6'
 gem 'turbolinks', '~> 5.0.0'
 gem 'uglifier', '4.1.3'
@@ -24,6 +25,7 @@ group :development, :test do
   gem 'dotenv-rails', '~> 2.2'
   gem 'pry-rails', '~> 0.3'
   gem 'rubocop'
+  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
 
 group :test do
