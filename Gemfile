@@ -29,6 +29,7 @@ group :development, :test do
 end
 
 group :test do
+  gem 'capybara'
   gem 'rails-controller-testing'
   gem 'rspec-rails', '~> 3.7'
   gem 'webmock', '~> 3.1'

@@ -14,8 +14,8 @@ class CallbackRequest
     :business_name,
     :telephone_number,
     :email,
-    :contact_time,
     :notes,
+    :contact_time,
     :reference
   )
 
