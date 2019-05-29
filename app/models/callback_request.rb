@@ -15,9 +15,10 @@ class CallbackRequest
     :telephone_number,
     :email,
     :notes,
-    :contact_time,
     :reference
   )
+
+  attr_writer :contact_time
 
   def save
     response = LeadService.create(attributes)
@@ -30,6 +31,10 @@ class CallbackRequest
 
   def attributes
     instance_values
+  end
+
+  def contact_time
+    @contact_time ||= Time.current
   end
 
   private
