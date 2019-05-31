@@ -35,3 +35,17 @@ Check `.env.example`
 - LEAD_API_PACCNAME="MicDevtest"
 - LEAD_API_PPARTNER="MicDevtest"
 - LEAD_API_ACCESS_TOKEN=provided_by_make_it_cheaper
+
+## Docker
+
+If you prefer you can use docker to run and work with the application.
+You will need `docker` and `docker-compose` installed.
+
+#### To build and run the image and the server
+`docker-compose up --build`
+
+#### To run the rails console
+`docker-compose run web bundle exec rails console`
+
+#### To get a shell inside the container
+`docker-compose run web /bin/bash`
