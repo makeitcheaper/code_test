@@ -11,4 +11,11 @@ class LeadForm
   validates :email, presence: true, length: { maximum: 80 }
   validates :notes, length: { maximum: 255 }
   validates :reference, length: { maximum: 50 }
+
+  def save
+    return false unless valid?
+
+    # TODO
+    true
+  end
 end
