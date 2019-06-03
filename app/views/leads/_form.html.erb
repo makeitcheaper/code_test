@@ -13,29 +13,29 @@
 
   <div class="row">
     <div class="form-group col-12">
-      <%= f.label :name, "Name *" %>
-      <%= f.text_field :name, required: true, class: "form-control" %>
+      <%= f.label :name, "Full name *" %>
+      <%= f.text_field :name, required: true, maxlength: 100, class: "form-control" %>
     </div>
   </div>
 
   <div class="row">
     <div class="form-group col-12">
       <%= f.label :business_name, "Business name *" %>
-      <%= f.text_field :business_name, required: true, class: "form-control" %>
+      <%= f.text_field :business_name, required: true, maxlength: 100, class: "form-control" %>
     </div>
   </div>
 
   <div class="row">
     <div class="form-group col-12">
       <%= f.label :telephone_number, "Telephone number *" %>
-      <%= f.telephone_field :telephone_number, required: true, class: "form-control" %>
+      <%= f.telephone_field :telephone_number, required: true, maxlength: 13, class: "form-control" %>
     </div>
   </div>
 
   <div class="row">
     <div class="form-group col-12">
       <%= f.label :email, "Email *" %>
-      <%= f.email_field :email, required: true, class: "form-control" %>
+      <%= f.email_field :email, required: true, maxlength: 80, class: "form-control" %>
     </div>
   </div>
 
@@ -49,14 +49,14 @@
   <div class="row">
     <div class="form-group col-12">
       <%= f.label :notes %>
-      <%= f.text_area :notes, class: "form-control" %>
+      <%= f.text_area :notes, maxlength: 255, class: "form-control" %>
     </div>
   </div>
 
   <div class="row">
     <div class="form-group col-12">
       <%= f.label :reference %>
-      <%= f.text_field :reference, class: "form-control" %>
+      <%= f.text_field :reference, maxlength: 50, class: "form-control" %>
     </div>
   </div>
 
