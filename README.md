@@ -49,3 +49,7 @@ You will need `docker` and `docker-compose` installed.
 
 #### To get a shell inside the container
 `docker-compose run web /bin/bash`
+
+## Solution notes
+- I've included only the most basic validations in LeadForm as generally I'm not really sure I should duplicate the validations done by the API, especially since they could change in the future,
+- the Swagger docs for the API endpoint show that a 401 unauthorized response from the API returns a json with `message` and `errors` fields but it actually returns only the `message` field. I've added some code that takes that into account (see `LeadAPI#errors_from_response`).
