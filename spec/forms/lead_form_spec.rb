@@ -17,4 +17,46 @@ describe LeadForm, type: :model do
     it { should validate_length_of(:notes).is_at_most(255) }
     it { should validate_length_of(:reference).is_at_most(50) }
   end
+
+  describe '#save' do
+    subject { described_class.new(attributes).save }
+
+    context 'valid form object' do
+      let(:attributes) do
+        {
+          name: 'Name',
+          business_name: 'Business name',
+          telephone_number: '123',
+          email: 'email@example.com',
+          lead_repository: lead_repository_class
+        }
+      end
+      let(:lead_repository_class) { double(new: lead_repository) }
+      let(:lead_repository) { double(save: lead) }
+
+      context 'lead repository returns no errors on save' do
+        let(:lead) { double(errors: []) }
+
+        it 'returns true' do
+          expect(subject).to be true
+        end
+      end
+
+      context 'lead repository returns errors on save' do
+        let(:lead) { double(errors: ['Some error']) }
+
+        it 'returns false' do
+          expect(subject).to be false
+        end
+      end
+    end
+
+    context 'invalid form object' do
+      let(:attributes) { {} }
+
+      it 'returns false' do
+        expect(subject).to be false
+      end
+    end
+  end
 end
