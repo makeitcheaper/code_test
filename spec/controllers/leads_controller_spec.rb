@@ -24,6 +24,16 @@ describe LeadsController do
         }
       end
 
+      before do
+        stub_request(:any, /#{Rails.configuration.lead_api_base_uri}/).to_return(
+          body: {
+            message: 'Ok',
+            errors: []
+          }.to_json,
+          status: 201
+        )
+      end
+
       it 'redirects to new lead page' do
         subject
 
