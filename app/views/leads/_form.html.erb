@@ -1,9 +1,9 @@
-<%= form_for(object, url: leads_path, method: :post) do |f| %>
+<%= form_for(object, url: leads_path, method: :post, html: { class: "card col-12 col-md-6 col-lg-4 py-3 my-5" }) do |f| %>
   <% if object.errors.any? %>
     <div class="alert alert-warning" role="alert">
       <p><%= pluralize(object.errors.count, "error") %> prohibited this form from being sent:</p>
 
-      <ul>
+      <ul class="my-0">
         <% object.errors.full_messages.each do |message| %>
           <li><%= message %></li>
         <% end %>
@@ -12,56 +12,56 @@
   <% end %>
 
   <div class="row">
-    <div class="form-group col-12 col-md-6 col-lg-4">
+    <div class="form-group col-12">
       <%= f.label :name, "Name *" %>
       <%= f.text_field :name, required: true, class: "form-control" %>
     </div>
   </div>
 
   <div class="row">
-    <div class="form-group col-12 col-md-6 col-lg-4">
+    <div class="form-group col-12">
       <%= f.label :business_name, "Business name *" %>
       <%= f.text_field :business_name, required: true, class: "form-control" %>
     </div>
   </div>
 
   <div class="row">
-    <div class="form-group col-12 col-md-6 col-lg-4">
+    <div class="form-group col-12">
       <%= f.label :telephone_number, "Telephone number *" %>
-      <%= f.text_field :telephone_number, required: true, class: "form-control" %>
+      <%= f.telephone_field :telephone_number, required: true, class: "form-control" %>
     </div>
   </div>
 
   <div class="row">
-    <div class="form-group col-12 col-md-6 col-lg-4">
+    <div class="form-group col-12">
       <%= f.label :email, "Email *" %>
       <%= f.email_field :email, class: "form-control" %>
     </div>
   </div>
 
   <div class="row">
-    <div class="form-group col-12 col-md-6 col-lg-4">
+    <div class="form-group col-12">
       <%= f.label :contact_time %>
       <%= f.datetime_local_field :contact_time, class: "form-control" %>
     </div>
   </div>
 
   <div class="row">
-    <div class="form-group col-12 col-md-6 col-lg-4">
+    <div class="form-group col-12">
       <%= f.label :notes %>
       <%= f.text_area :notes, class: "form-control" %>
     </div>
   </div>
 
   <div class="row">
-    <div class="form-group col-12 col-md-6 col-lg-4">
+    <div class="form-group col-12">
       <%= f.label :reference %>
       <%= f.text_field :reference, class: "form-control" %>
     </div>
   </div>
 
   <div class="row">
-    <div class="col-12">
+    <div class="col-12 mt-4">
       <%= f.submit "Send", class: "btn btn-primary" %>
     </div>
   </div>
