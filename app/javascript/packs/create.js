@@ -1,7 +1,10 @@
-import initCreateApp from '../src/create.js';
+import Vue from 'vue';
+import CreateApp from '../src/create/app.vue';
 
 document.addEventListener('DOMContentLoaded', () => {
-  console.log('packs/create.js');
+  const vm = new Vue({
+    render: h => h(CreateApp),
+  }).$mount();
 
-  initCreateApp();
+  document.body.appendChild(vm.$el);
 });
