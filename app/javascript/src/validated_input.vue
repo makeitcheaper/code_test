@@ -2,8 +2,8 @@
   <div class="pb-3">
     <input class="w-full h-10 font-bold px-3 rounded-lg bg-gray-100 border border-black" name="name" :type="type" :placeholder="placeholder" :required="required" :pattern="pattern" :value="value" @input="input"/>
     <ul class="bg-red-500 text-white px-5" v-if="isDirty">
-      <li><slot class v-if="!validity.typeMismatch && validity.patternMismatch" name="patternMismatch"></slot></li>
-      <li><slot class v-if="validity.typeMismatch" name="typeMismatch"></slot></li>
+      <li><slot class v-if="!validationErrors.typeMismatch && validationErrors.patternMismatch" name="patternMismatch"></slot></li>
+      <li><slot class v-if="validationErrors.typeMismatch" name="typeMismatch"></slot></li>
       <li><slot v-if="value && value.length > maxlength" name="tooLong" :maxlength="maxlength"></slot></li>
     </ul>
   </div>
@@ -18,7 +18,7 @@ export default {
     },
 
     errors: {
-      type: Array,
+      type: Object,
       required: true,
     },
 
@@ -47,9 +47,9 @@ export default {
     },
 
     maxlength: {
-      type: String,
+      type: Number,
       required: false,
-      default: '',
+      default: Infinity,
     },
   },
 
@@ -60,11 +60,25 @@ export default {
     };
   },
 
+  computed: {
+    isMaxlength() {
+      return this.value && this.value.length > this.maxlength;
+    },
+
+    validationErrors() {
+      return Object.assign({}, this.validity, this.errors);
+    },
+  },
+
   methods: {
     input({ target }) {
       if (!this.isDirty) this.isDirty = true;
 
-      this.validity = target.validity;
+      const validity = {};
+      for (let error in target.validity) {
+        validity[error] = target.validity[error];
+      }
+      this.validity = validity;
 
       this.$emit('input', target.value);
     },

@@ -20,9 +20,9 @@
 
 <script>
 import TopBar from '../top_bar.vue';
-import NavBar from '../nav_bar.vue';
+import NavBar from '../nav/bar.vue';
 import MarketingMessage from './marketing_message.vue';
-import CreateForm from './create_form.vue';
+import CreateForm from './form.vue';
 
 export default {
   components: {

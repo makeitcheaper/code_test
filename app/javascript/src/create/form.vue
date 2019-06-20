@@ -1,5 +1,5 @@
 <template>
-  <form ref="form" novalidate="true" class="bg-white mt-2 py-4 px-5 max-w-lg" @submit.prevent="submit" @input="checkValidity">
+  <form ref="form" novalidate="true" class="bg-white mt-2 py-4 px-5 max-w-lg mx-auto md:mx-0" @submit.prevent="submit" @input="checkValidity">
     <div class="font-bond text-3xl text-center">
       Enter your details here
     </div>
@@ -7,7 +7,7 @@
       You complete the form. Good things happen.
     </div>
 
-    <validated-input type="text" placeholder="Your full name" pattern=".+\s.+" maxlength="100" v-model="payload.name" :errors="errors.name" :required="true">
+    <validated-input type="text" placeholder="Your full name" pattern=".+\s.+" :maxlength="100" v-model="payload.name" :errors="errors.name" :required="true">
       <template #patternMismatch>
         Please provide your first <strong>and</strong> last name. There should be a space between them!
       </template>
@@ -16,13 +16,16 @@
       </template>
     </validated-input>
 
-    <validated-input type="text" placeholder="Your business name" maxlength="100" v-model="payload.businessName" :errors="errors.businessName" :required="true">
+    <validated-input type="text" placeholder="Your business name" :maxlength="100" v-model="payload.businessName" :errors="errors.businessName" :required="true">
+      <template #patternMismatch>
+        Please provide a business name.
+      </template>
       <template #tooLong="{ maxlength }">
         Please provide a trading name for your business that is under {{ maxlength }} characters.
       </template>
     </validated-input>
 
-    <validated-input type="email" placeholder="Your email address" maxlength="80" pattern=".+@.+\..+" v-model="payload.email" :errors="errors.email" :required="true">
+    <validated-input type="email" placeholder="Your email address" :maxlength="80" pattern=".+@.+\..+" v-model="payload.email" :errors="errors.email" :required="true">
       <template #typeMismatch>
         Please provide a valid email address.
       </template>
@@ -34,7 +37,7 @@
       </template>
     </validated-input>
 
-    <validated-input type="tel" placeholder="Your telephone number" maxlength="13" pattern="^(\+44|0)\d{10}" v-model="payload.telephoneNumber" :errors="errors.telephoneNumber" :required="true">
+    <validated-input type="tel" placeholder="Your telephone number" :maxlength="13" pattern="^(\+44|0)\d{10}" v-model="payload.telephoneNumber" :errors="errors.telephoneNumber" :required="true">
       <template #typeMismatch>
         Please provide a valid telephone number.
       </template>
@@ -48,13 +51,15 @@
 
     <div class="pb-3 text-xs text-center">By submitting your details you agree to reviewing this code test.</div>
 
-    <button type="submit" class="w-full h-10 bg-red-700 rounded-full text-white font-bold submit-button" :disabled="!isValid">Create</button>
+    <button type="submit" class="w-full h-10 rounded-full text-white font-bold submit-button" :class="submitClass" :disabled="!isValid">{{ submitText }}</button>
   </form>
 </template>
 
 <script>
 import ValidatedInput from '../validated_input.vue';
-import CreateService from '../create/services/create_service.js';
+import CreateService from '../services/create_service.js';
+
+const DEFAULT_SUBMIT_TEXT = 'Create';
 
 export default {
   components: {
@@ -65,6 +70,8 @@ export default {
     return {
       isValid: false,
 
+      status: '',
+
       payload: {
         name: '',
         businessName: '',
@@ -73,34 +80,70 @@ export default {
       },
 
       errors: {
-        name: [],
-        businessName: [],
-        email: [],
-        telephoneNumber: [],
+        name: {},
+        businessName: {},
+        email: {},
+        telephoneNumber: {},
       }
     }
   },
 
+  computed: {
+    submitClass() {
+      switch (this.status) {
+        case 'loading':
+          return 'bg-blue-300';
+        case 'failed':
+          return 'bg-red-900';
+        case 'success':
+          return 'bg-green-700';
+        default:
+          return 'bg-red-500';
+      }
+    },
+
+    submitText() {
+      switch (this.status) {
+        case 'loading':
+          return 'Creating...';
+        case 'failed':
+          return 'Failed!';
+        case 'success':
+          return 'Success!';
+        default:
+          return 'Create';
+      }
+    },
+  },
+
   methods: {
     checkValidity() {
+      this.status = '';
       this.isValid = this.$refs.form.checkValidity();
     },
 
     submit() {
-      this.isLoading = true;
+      if (!this.isValid) return;
 
-      CreateService.create(payload)
-        .then(() => {
-          this.isLoading = false;
-        }).catch(() => {
-          this.isLoading = false;
+      this.status = 'loading';
+
+      CreateService.create(this.payload)
+        .then(({ data }) => {
+          this.status = 'success';
+          this.payload = {};
+        }).catch(({ status, data }) => {
+          this.status = 'failed';
+
+          if (status === 400) {
+            this.errors = data.errors;
+          }
         });
     },
   },
 };
 </script>
 
-<style>
+<style scoped>
 .submit-button:disabled {
   @apply opacity-50 cursor-not-allowed;
 }
