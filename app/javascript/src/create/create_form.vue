@@ -1,27 +1,60 @@
 <template>
-  <form novalidate="true" class="bg-white mt-2 py-4 px-5 max-w-lg" @submit.prevent="submit">
+  <form ref="form" novalidate="true" class="bg-white mt-2 py-4 px-5 max-w-lg" @submit.prevent="submit" @input="checkValidity">
     <div class="font-bond text-3xl text-center">
       Enter your details here
     </div>
     <div class="text-sm text-center mb-3">
       You complete the form. Good things happen.
     </div>
-    <validated-input type="text" placeholder="Your full name" pattern=".+\s.+" maxlength="100" :errors="errors.name"/>
 
-    <validated-input type="text" placeholder="Your business name" maxlength="100" :errors="errors.businessName"/>
+    <validated-input type="text" placeholder="Your full name" pattern=".+\s.+" maxlength="100" v-model="payload.name" :errors="errors.name" :required="true">
+      <template #patternMismatch>
+        Please provide your first <strong>and</strong> last name. There should be a space between them!
+      </template>
+      <template #tooLong="{ maxlength }">
+        Your name must be under {{ maxlength }} characters, you can leave out your middle name.
+      </template>
+    </validated-input>
 
-    <validated-input type="email" placeholder="Your email address" maxlength="13" :errors="errors.email"/>
+    <validated-input type="text" placeholder="Your business name" maxlength="100" v-model="payload.businessName" :errors="errors.businessName" :required="true">
+      <template #tooLong="{ maxlength }">
+        Please provide a trading name for your business that is under {{ maxlength }} characters.
+      </template>
+    </validated-input>
 
-    <validated-input type="tel" placeholder="Your telephone number" maxlength="80" :errors="errors.telephoneNumber"/>
+    <validated-input type="email" placeholder="Your email address" maxlength="80" pattern=".+@.+\..+" v-model="payload.email" :errors="errors.email" :required="true">
+      <template #typeMismatch>
+        Please provide a valid email address.
+      </template>
+      <template #patternMismatch>
+        Please provide an email address with a fully qualified domain name.
+      </template>
+      <template #tooLong="{ maxlength }">
+        Your email address should be less than {{ maxlength }} characters long, sorry!
+      </template>
+    </validated-input>
+
+    <validated-input type="tel" placeholder="Your telephone number" maxlength="13" pattern="^(\+44|0)\d{10}" v-model="payload.telephoneNumber" :errors="errors.telephoneNumber" :required="true">
+      <template #typeMismatch>
+        Please provide a valid telephone number.
+      </template>
+      <template #patternMismatch>
+        You should provide a <strong>UK</strong> telephone number, without spaces or brackets. <i>+44 is optional.</i>
+      </template>
+      <template #tooLong="{ maxlength }">
+        A valid phone number should be no more than {{ maxlength }} characters. Remove any spaces and parentheses.
+      </template>
+    </validated-input>
 
     <div class="pb-3 text-xs text-center">By submitting your details you agree to reviewing this code test.</div>
 
-    <button type="submit" class="w-full h-10 bg-red-700 rounded-full text-white font-bold">Create</button>
+    <button type="submit" class="w-full h-10 bg-red-700 rounded-full text-white font-bold submit-button" :disabled="!isValid">Create</button>
   </form>
 </template>
 
 <script>
 import ValidatedInput from '../validated_input.vue';
+import CreateService from '../create/services/create_service.js';
 
 export default {
   components: {
@@ -30,6 +63,15 @@ export default {
 
   data() {
     return {
+      isValid: false,
+
+      payload: {
+        name: '',
+        businessName: '',
+        email: '',
+        telephoneNumber: '',
+      },
+
       errors: {
         name: [],
         businessName: [],
@@ -40,12 +82,26 @@ export default {
   },
 
   methods: {
+    checkValidity() {
+      this.isValid = this.$refs.form.checkValidity();
+    },
+
     submit() {
-      this.errors.name.push('broked!');
-      this.errors.businessName.push('broked!');
-      this.errors.email.push('broked!');
-      this.errors.telephoneNumber.push('broked!');
+      this.isLoading = true;
+
+      CreateService.create(payload)
+        .then(() => {
+          this.isLoading = false;
+        }).catch(() => {
+          this.isLoading = false;
+        });
     },
   },
 };
 </script>
+
+<style>
+.submit-button:disabled {
+  @apply opacity-50 cursor-not-allowed;
+}
+</style>
