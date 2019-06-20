@@ -22,6 +22,6 @@
 .top-bar-button-border {
   @apply border-t-8 border-l border-r pb-8px;
   border-color: black;
-  border-top-color: theme('colors.bright-blue');
+  border-top-color: theme('colors.blue-bright');
 }
 </style>

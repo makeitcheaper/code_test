@@ -15,6 +15,6 @@
   @apply h-full px-6 mr-3 flex items-center no-underline text-black;
 }
 .nav-item > a:hover {
-  @apply border-b-8 border-bright-blue pt-8px;
+  @apply border-b-8 border-blue-bright pt-8px;
 }
 </style>

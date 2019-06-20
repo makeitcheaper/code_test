@@ -3,12 +3,18 @@
     <top-bar/>
     <nav-bar/>
 
-    <div class="py-10 bg-blue-300">
-      <div class="container flex">
-        <marketing-message/>
-        <create-form/>
+    <div class="bg-blue-gradient">
+      <div class="container">
+        <div class="row">
+          <marketing-message class="col-12 col-md-6"/>
+          <create-form class="col-12 col-md-6"/>
+        </div>
       </div>
     </div>
+
+    <div class="h-20 bg-gray-900"></div>
+    <div class="h-64 bg-teal-100"></div>
+    <div class="h-64 bg-gray-200"></div>
   </div>
 </template>
 
@@ -28,6 +34,10 @@ export default {
 };
 </script>
 
-<style>
-@import "../styles/tailwind.css";
+<style src="../styles/tailwind.css"/>
+
+<style scoped>
+.bg-blue-gradient {
+  background-image: linear-gradient(to bottom, #41bec8, #bcf9f1);
+}
 </style>
