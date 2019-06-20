@@ -1,12 +1,12 @@
-import BaseService from './base_service.js';
+import BaseService from "./base_service.js";
 
 const CreateService = {
   client: BaseService,
 
   errorMap: {
-    present: 'valueMissing',
-    blank: 'valueMissing',
-    format: 'patternMismatch',
+    present: "valueMissing",
+    blank: "valueMissing",
+    format: "patternMismatch"
   },
 
   parseKey(key) {
@@ -15,7 +15,9 @@ const CreateService = {
 
   parseErrors(errors) {
     return errors.reduce((errors, error) => {
-      const [_, key, err] = error.match(/Field\s'(.+?)'.+(blank|present|format)/);
+      const [_, key, err] = error.match(
+        /Field\s'(.+?)'.+(blank|present|format)/
+      );
       const parsedKey = this.parseKey(key);
 
       if (!errors[parsedKey]) errors[parsedKey] = {};
@@ -46,12 +48,13 @@ const CreateService = {
 
     // return Promise.resolve({status: 200, data: { message: 'Enqueue success' }});
 
-    return this.client.post('/create', {
-      name,
-      business_name: businessName,
-      email: email,
-      telephone_number: telephoneNumber,
-    })
+    return this.client
+      .post("/create", {
+        name,
+        business_name: businessName,
+        email: email,
+        telephone_number: telephoneNumber
+      })
       .then(({ data }) => data)
       .catch(({ response }) => {
         if (response.status === 400) {
@@ -61,7 +64,7 @@ const CreateService = {
           return response;
         }
       });
-  },
+  }
 };
 
 export default CreateService;
