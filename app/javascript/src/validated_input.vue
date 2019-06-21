@@ -1,6 +1,6 @@
 <template>
   <div class="pb-3">
-    <input class="w-full h-10 font-bold px-3 rounded-lg bg-gray-100 border border-black" name="name" :type="type" :placeholder="placeholder" :required="required" :pattern="pattern" :value="value" @input="input"/>
+    <input class="w-full h-10 font-bold px-3 rounded-lg bg-gray-100 border border-black" :name="name" :type="type" :placeholder="placeholder" :required="required" :pattern="pattern" :value="value" @input="input"/>
     <ul class="bg-red-500 text-white px-5" v-if="isDirty">
       <li><slot class v-if="!validationErrors.typeMismatch && validationErrors.patternMismatch" name="patternMismatch"></slot></li>
       <li><slot class v-if="validationErrors.typeMismatch" name="typeMismatch"></slot></li>
@@ -26,6 +26,11 @@ export default {
       type: String,
       required: false,
       default: 'text',
+    },
+
+    name: {
+      type: String,
+      required: true,
     },
 
     placeholder: {

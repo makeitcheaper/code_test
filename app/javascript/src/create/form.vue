@@ -1,5 +1,5 @@
 <template>
-  <form ref="form" novalidate="true" class="bg-white mt-2 py-4 px-5 max-w-lg mx-auto md:mx-0" @submit.prevent="submit" @input="checkValidity">
+  <form ref="form" novalidate="true" class="bg-white mt-2 py-4 px-5 max-w-lg mx-auto md:mx-0 qa-form" @submit.prevent="submit" @input="checkValidity">
     <div class="font-bond text-3xl text-center">
       Enter your details here
     </div>
@@ -7,7 +7,7 @@
       You complete the form. Good things happen.
     </div>
 
-    <validated-input type="text" placeholder="Your full name" pattern=".+\s.+" :maxlength="100" v-model="payload.name" :errors="errors.name" :required="true">
+    <validated-input type="text" name="name" placeholder="Your full name" pattern=".+\s.+" :maxlength="100" v-model="payload.name" :errors="errors.name" :required="true">
       <template #patternMismatch>
         Please provide your first <strong>and</strong> last name. There should be a space between them!
       </template>
@@ -16,7 +16,7 @@
       </template>
     </validated-input>
 
-    <validated-input type="text" placeholder="Your business name" :maxlength="100" v-model="payload.businessName" :errors="errors.businessName" :required="true">
+    <validated-input type="text" name="businessName" placeholder="Your business name" :maxlength="100" v-model="payload.businessName" :errors="errors.businessName" :required="true">
       <template #patternMismatch>
         Please provide a business name.
       </template>
@@ -25,7 +25,7 @@
       </template>
     </validated-input>
 
-    <validated-input type="email" placeholder="Your email address" :maxlength="80" pattern=".+@.+\..+" v-model="payload.email" :errors="errors.email" :required="true">
+    <validated-input type="email" name="email" placeholder="Your email address" :maxlength="80" pattern=".+@.+\..+" v-model="payload.email" :errors="errors.email" :required="true">
       <template #typeMismatch>
         Please provide a valid email address.
       </template>
@@ -37,7 +37,7 @@
       </template>
     </validated-input>
 
-    <validated-input type="tel" placeholder="Your telephone number" :maxlength="13" pattern="^(\+44|0)\d{10}" v-model="payload.telephoneNumber" :errors="errors.telephoneNumber" :required="true">
+    <validated-input type="tel" name="telephoneNumber" placeholder="Your telephone number" :maxlength="13" pattern="^(\+44|0)\d{10}" v-model="payload.telephoneNumber" :errors="errors.telephoneNumber" :required="true">
       <template #typeMismatch>
         Please provide a valid telephone number.
       </template>
@@ -51,7 +51,7 @@
 
     <div class="pb-3 text-xs text-center">By submitting your details you agree to reviewing this code test.</div>
 
-    <button type="submit" class="w-full h-10 rounded-full text-white font-bold submit-button" :class="submitClass" :disabled="!isValid">{{ submitText }}</button>
+    <button type="submit" class="w-full h-10 rounded-full text-white font-bold submit-button qa-submit" :class="submitClass" :disabled="!isValid">{{ submitText }}</button>
   </form>
 </template>
 
