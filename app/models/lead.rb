@@ -1,5 +1,6 @@
 class Lead
   include ActiveModel::Model
+  include ActiveModel::Validations
 
   attr_accessor :name,
                 :business_name,
@@ -8,4 +9,9 @@ class Lead
                 :contact_time,
                 :notes,
                 :reference
+
+
+  def save
+    MakeItCheaperService.save_lead(self)
+  end
 end
