@@ -1,7 +1,7 @@
 module LeadService
   class << self
     def enqueue(attrs)
-      # LeadApi.enqueue
+      LeadApi::Leads.new.create(attrs)
     end
   end
 end

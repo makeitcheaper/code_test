@@ -17,8 +17,10 @@ module V1
 
       post do
         LeadService.enqueue(params)
-      rescue
-        error!("Unknown Error", 400)
+      rescue Exception => e
+        puts e.message
+        puts e.backtrace
+        error!('Unable to enqueue a lead.', 400)
       end
     end
   end
