@@ -16,6 +16,7 @@ gem 'turbolinks', '~> 5.0.0'
 gem 'uglifier', '~> 4.1', '>= 4.1.20'
 
 gem 'grape'
+gem 'webpacker', '~> 4.x'
 
 group :development do
   gem 'listen', '~> 3.1', '>= 3.1.5'
