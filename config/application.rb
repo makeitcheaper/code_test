@@ -24,5 +24,6 @@ module MoneySuperMarket
     config.paths.add File.join('app', 'api'), glob: File.join('**', '*.rb')
     config.autoload_paths += Dir[Rails.root.join('app', 'api', '*')]
     config.autoload_paths += Dir[Rails.root.join('lib')]
+    config.autoload_paths += %W(#{config.root}/lib)
   end
 end

@@ -1,8 +1,6 @@
 module LeadApi
   class Leads < Base
     def create(attrs = {})
-      puts "Posting #{attrs.merge(@params)} to #{self.class.base_uri}"
-
       response = self.class.post(
         '/create',
         multipart: true,
@@ -14,7 +12,7 @@ module LeadApi
       if response.code == 201
         parsed_response
       elsif response.code == 400
-        validation_errors = parsed_response.errors
+        validation_errors = parsed_response[:errors]
 
         raise LeadApi::Error::Validation.new(validation_errors)
       elsif response.code == 401

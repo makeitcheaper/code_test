@@ -1,10 +1,7 @@
 module V1
   class Leads < Grape::API
     resources :leads do
-      desc 'Enqueues a new lead' do
-        # failure [[400, 'Error', API::Error]]
-        success [[201, 'Created']]
-      end
+      desc 'Enqueues a new lead'
       params do
         requires :email, type: String, allow_blank: false, desc: 'User email'
         requires :name, type: String, allow_blank: false, desc: 'User name'
@@ -17,9 +14,11 @@ module V1
 
       post do
         LeadService.enqueue(params)
+
+        {
+          status: 'Enqueued'
+        }
       rescue Exception => e
-        puts e.message
-        puts e.backtrace
         error!('Unable to enqueue a lead.', 400)
       end
     end
