@@ -14,7 +14,7 @@ describe 'Leads endpoint' do
           email: 'email@example.com',
           business_name: 'Company Ltd',
           name: 'Jane Smith',
-          telephone_number: '+44 07777777777',
+          telephone_number: '07777777777',
           contact_time: '2016-11-27 13:45:30',
           notes: 'some notes',
           reference: 'ref #123456'
@@ -73,7 +73,7 @@ describe 'Leads endpoint' do
           email: 'email@example.com',
           business_name: 'Company Ltd',
           name: 'Jane Smith',
-          telephone_number: '+44 07777777777'
+          telephone_number: '07777777777'
         }
       end
 
